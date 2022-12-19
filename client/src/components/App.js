@@ -1,8 +1,7 @@
 import '../App.css';
 import Navagation from './Navigation';
 import Layout from './Layout';
-import Signup from './Signup';
-import { Route, Routes } from "react-router-dom";
+
 /*
 
 Frontend
@@ -39,7 +38,6 @@ function App() {
     <div className="App">
       <Navagation/>
       <Layout/>
-      {/* <Switch><Signup/></Switch> */}
     </div>
   );
 }
