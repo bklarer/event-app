@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 function Sidebar () {
 
 
-
+//If logged in, show <Side/>
 
 
     return (
@@ -17,7 +17,7 @@ function Sidebar () {
             <Col xs={2} >      
               <Side />
             </Col>
-            <Col  xs={8} >
+            <Col  xs={4} >
                 <Routes>
                     <Route exact path="/login" element={<Login/>} />
                     <Route exact path="/signup" element={<Signup/>}/>
