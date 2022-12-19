@@ -1,7 +1,7 @@
 import '../App.css';
 import Navagation from './Navigation';
 import Sidebar from './Sidebar';
-import {Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+
 
 
 /*
@@ -39,17 +39,7 @@ function App() {
   return (
     <div className="App">
       <Navagation/>
-      <Container fluid>
-                <Row>
-                    <Col xs={2} id="sidebar-wrapper">      
-                      <Sidebar />
-                    </Col>
-                    <Col  xs={10} id="page-content-wrapper">
-                        this is a test
-                    </Col> 
-                </Row>
-
-            </Container>
+      <Sidebar/>
     </div>
   );
 }

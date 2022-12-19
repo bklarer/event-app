@@ -1,38 +1,31 @@
-import {Nav} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
+import Side from "./Side"
+
+
+function Sidebar () {
 
 
 
-
-function Sidebar() {
 
 
     return (
 
-        <Nav className="col-md-12 d-none d-md-block bg-light sidebar"
-        activeKey="/home"
-        onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-        >
-            <div className="sidebar-sticky"></div>
-        <Nav.Item>
-            <Nav.Link href="/home">Active</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link eventKey="disabled" disabled>
-            Disabled
-            </Nav.Link>
-        </Nav.Item>
-        </Nav>
+        <Container fluid>
+        <Row>
+            <Col xs={2} id="sidebar-wrapper">      
+              <Side />
+            </Col>
+            <Col  xs={10} id="page-content-wrapper">
+                Event with Title, description, date, address, how many people are going, etc...
+                Going button, edit button (only allows if creator is logged in), delete button (creator only)
+            </Col> 
+        </Row>
+
+    </Container>
 
 
 
     )
-
 
 
 }
