@@ -1,9 +1,8 @@
 import '../App.css';
 import Navagation from './Navigation';
-import Sidebar from './Sidebar';
-
-
-
+import Layout from './Layout';
+import Signup from './Signup';
+import { Route, Routes } from "react-router-dom";
 /*
 
 Frontend
@@ -39,7 +38,8 @@ function App() {
   return (
     <div className="App">
       <Navagation/>
-      <Sidebar/>
+      <Layout/>
+      {/* <Switch><Signup/></Switch> */}
     </div>
   );
 }

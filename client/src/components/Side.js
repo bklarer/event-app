@@ -1,9 +1,9 @@
-import {Nav} from "react-bootstrap";
+import Nav from "react-bootstrap/Nav";
+
+//Will need to change links to Nav from react router dom
 
 
-
-
-function Side() {
+function Layout() {
 
 
     return (
@@ -37,4 +37,4 @@ function Side() {
 }
 
 
-export default Side
+export default Layout
