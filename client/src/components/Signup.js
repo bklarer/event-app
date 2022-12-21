@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { useState } from "react"
 
 
@@ -10,7 +11,7 @@ function Signup () {
     return (
 
         <div>
-            <Form>
+            <Form >
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Username" />
@@ -31,7 +32,9 @@ function Signup () {
                     <Form.Label>Confirm Password</Form.Label> 
                     <Form.Control type="password" placeholder="Confirm Password" />
                 </Form.Group>
-
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
 
             </Form>
 

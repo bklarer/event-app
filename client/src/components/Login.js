@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { useState } from "react"
 
 
@@ -21,7 +22,9 @@ function Login () {
                     <Form.Label>Password</Form.Label> 
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
 
             </Form>
         </div>
