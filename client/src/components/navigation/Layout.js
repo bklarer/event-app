@@ -1,8 +1,8 @@
 import {Container, Row, Col} from "react-bootstrap";
 import Side from "./Side"
-import Login from "./Login"
-import Signup from "./Signup"
-import CreateEvent from "./CreateEvent";
+import Login from "../user/Login"
+import Signup from "../user/Signup"
+import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
 
 function Sidebar () {
