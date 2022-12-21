@@ -1,11 +1,11 @@
 import {Container, Row, Col} from "react-bootstrap";
-import Side from "./Side"
+import Sidebar from "./Sidebar"
 import Login from "../user/Login"
 import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
 
-function Sidebar () {
+function Layout () {
 
 
 //If logged in, show <Side/>
@@ -16,7 +16,7 @@ function Sidebar () {
         <Container >
         <Row className="justify-content-md-center">
             <Col xs={2} >      
-              <Side />
+              <Sidebar />
             </Col>
             <Col  xs={4} >
                 <Routes>
@@ -39,4 +39,4 @@ function Sidebar () {
 }
 
 
-export default Sidebar
+export default Layout

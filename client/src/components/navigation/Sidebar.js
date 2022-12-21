@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 //Will need to change links to Nav from react router dom
 
 
-function Layout() {
+function Sidebar() {
 
 
     return (
@@ -33,4 +33,4 @@ function Layout() {
 }
 
 
-export default Layout
+export default Sidebar
