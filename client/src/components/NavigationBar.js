@@ -6,7 +6,7 @@ import {LinkContainer} from "react-router-bootstrap";
 // Will need state that shows if a user is logged in, which will change what shows in Navigation
 // May want to change NavBar
 
-function Navigation () {
+function NavigationBar () {
 
     // <NavLink style={{textDecoration: "none", color: "white", padding: 5}} to="/login">Login</NavLink>
 
@@ -40,4 +40,4 @@ function Navigation () {
 }
 
 
-export default Navigation
+export default NavigationBar

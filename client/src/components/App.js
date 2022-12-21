@@ -1,5 +1,5 @@
 import '../App.css';
-import Navagation from './Navigation';
+import NavagationBar from './NavigationBar';
 import Layout from './Layout';
 
 /*
@@ -36,7 +36,7 @@ Backend
 function App() {
   return (
     <div className="App">
-      <Navagation/>
+      <NavagationBar/>
       <Layout/>
     </div>
   );
