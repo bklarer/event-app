@@ -1,6 +1,6 @@
-import '../App.css';
-import NavagationBar from './navigation/NavigationBar';
-import Layout from './navigation/Layout';
+import './App.css';
+import NavagationBar from './features/navigation/NavigationBar';
+import Layout from './features/navigation/Layout';
 
 /*
 
