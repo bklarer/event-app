@@ -30,6 +30,7 @@ function CreateEvent () {
 
 
         <div>
+            <h1>Create New Event</h1>
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Event Title</Form.Label>
