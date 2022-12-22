@@ -7,8 +7,8 @@ import { useState } from "react"
 function CreateEvent () {
 
     const [newEvent, setNewEvent] = useState({
-        event_title: "",
-        event_description: "",
+        title: "",
+        description: "",
         img: "",
         date: "",
         time: ""
@@ -22,7 +22,6 @@ function CreateEvent () {
 
     let date = new Date().toISOString().slice(0, 10)
 
-    let time = 
 
     console.log(newEvent)
 
@@ -37,9 +36,9 @@ function CreateEvent () {
                     <Form.Control 
                         type="text" 
                         placeholder="Event Title" 
-                        name="event_title"
+                        name="title"
                         onChange={handleChange}
-                        value={newEvent.event_title}
+                        value={newEvent.title}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -47,9 +46,9 @@ function CreateEvent () {
                     <Form.Control 
                         type="text" 
                         placeholder="Description"
-                        name="event_description"
+                        name="description"
                         onChange={handleChange}
-                        value={newEvent.event_description}
+                        value={newEvent.description}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
