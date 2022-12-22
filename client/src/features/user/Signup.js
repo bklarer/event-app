@@ -25,6 +25,7 @@ function Signup () {
     return (
 
         <div>
+            <h1>Signup</h1>
             <Form >
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>

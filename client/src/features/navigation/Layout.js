@@ -4,20 +4,24 @@ import Login from "../user/Login"
 import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
+import { useState } from "react"
 
 function Layout () {
 
+    const [loggedIn, setLoggedIn] = useState(false)
 
 //If logged in, show <Side/>
 
+    const sidebar = <Col xs={2}> <Sidebar /> </Col>
+    const showSidebar = loggedIn ? sidebar : null
+
+    console.log(showSidebar)
 
     return (
 
         <Container >
         <Row className="justify-content-md-center">
-            <Col xs={2} >      
-              <Sidebar />
-            </Col>
+            {showSidebar} 
             <Col  xs={4} >
                 <Routes>
                     <Route exact path="/login" element={<Login/>} />
