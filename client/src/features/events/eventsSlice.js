@@ -19,6 +19,14 @@ const eventsSlice = createSlice({
         eventAdded(state, action) {
             state.entities.push(action.payload)
         },
+        eventUpdated(state, action) {
+            const event = state.entities.find((event => event.id === action.payload.id))
+            event.url = action.payload //will have to look at this
+        },
+        eventRemoved(state, action) {
+            const index = state.entities.findIndex((event)=> event.id === action.payload);
+            state.entities.splice(index, 1)
+        }
     },
     // extraReducers: {
     //     [fetchEvents.pending](state) {
