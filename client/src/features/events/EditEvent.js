@@ -18,7 +18,7 @@ function EditEvent () {
 
     function handleChange(e) {
         const {name, value} = e.target
-        setUpdateEvent((newEvent) => ({...newEvent, [name]: value}))
+        setUpdateEvent((updateEvent) => ({...updateEvent, [name]: value}))
     }
 
     let date = new Date().toISOString().slice(0, 10)
