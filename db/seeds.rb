@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create(username: "Ben", first_name: "Ben", last_name: "Klarer", password: "test")
-User.create(username: "John", first_name: "John", last_name: "Smith", password: "test")
+# User.create(username: "Ben", first_name: "Ben", last_name: "Klarer", password: "test")
+# User.create(username: "John", first_name: "John", last_name: "Smith", password: "test")
 
 # Ticket.create(user_id: 1, event_id: 1)
 
-# Event.create(title: "Christmas", description: "celebration", user_id: 1)
+# Event.create(title: "Christmas", description: "celebration", creator_id: 1)
