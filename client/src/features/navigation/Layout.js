@@ -8,11 +8,11 @@ import { useState } from "react"
 
 function Layout () {
 
-    const [loggedIn, setLoggedIn] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(true)
 
 //If logged in, show <Side/>
 
-    const sidebar = <Col xs={2}> <Sidebar /> </Col>
+    const sidebar = <Col xs={2} > <Sidebar /> </Col>
     const showSidebar = loggedIn ? sidebar : null
 
     console.log(showSidebar)
