@@ -14,6 +14,11 @@ class Api::EventsController < ApplicationController
         render json: event
     end
 
+    def updated
+        event = find_event
+        render json: event
+    end
+
     def destroy
         event = find_event
         event.destroy
@@ -24,7 +29,17 @@ class Api::EventsController < ApplicationController
     private
 
     def event_params
-        params.permit(:title, :description, :img_url, :date, :address, :city, :state, :zip, :creator_id)
+        params.permit(
+            :title, 
+            :description, 
+            :img_url, 
+            :date, 
+            :address, 
+            :city, 
+            :state, 
+            :zip, 
+            :creator_id
+        )
     end
 
     def find_event
