@@ -1,2 +1,35 @@
 class Api::EventsController < ApplicationController
+
+    def index
+        render json: Event.all
+    end
+
+    def create
+        event = Event.create!(event_params)
+        render json: event, status: :created
+    end
+
+    def show
+        event = find_event
+        render json: event
+    end
+
+    def destroy
+        event = find_event
+        event.destroy
+        head :no_content
+    end
+
+
+    private
+
+    def event_params
+        params.permit(:title, :description, :img_url, :date, :address, :city, :state, :zip, :creator_id)
+    end
+
+    def find_event
+        Event.find(params[:id])
+    end
+
+
 end
