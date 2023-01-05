@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
-// export const fetchEvents = createAsyncThunk("events/fetchEvents", () => {
-//     return fetch("/api/events")
-//         .then((response) => response.json())
-//         .then((events) => events)
-// })
+export const fetchEvents = createAsyncThunk("events/fetchEvents", () => {
+    return fetch("/api/events")
+        .then((response) => response.json())
+        .then((events) => events)
+})
 
 
 const eventsSlice = createSlice({
@@ -28,15 +28,15 @@ const eventsSlice = createSlice({
             state.entities.splice(index, 1)
         }
     },
-    // extraReducers: {
-    //     [fetchEvents.pending](state) {
-    //         state.status = "loading"
-    //     },
-    //     [fetchEvents.fulfilled](state, action) {
-    //         state.entities = action.payload;
-    //         state.status = "idle";
-    //     },
-    // },
+    extraReducers: {
+        [fetchEvents.pending](state) {
+            state.status = "loading"
+        },
+        [fetchEvents.fulfilled](state, action) {
+            state.entities = action.payload;
+            state.status = "idle";
+        },
+    },
 
 })
 
@@ -44,4 +44,4 @@ const eventsSlice = createSlice({
 
 
 
-export default eventsSlice
+export default eventsSlice.reducer

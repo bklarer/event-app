@@ -16,7 +16,6 @@ function Layout () {
     const sidebar = <Col xs={2} > <Sidebar /> </Col>
     const showSidebar = loggedIn ? sidebar : null
 
-    console.log(showSidebar)
 
     return (
 

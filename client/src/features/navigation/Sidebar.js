@@ -1,29 +1,41 @@
 import Nav from "react-bootstrap/Nav";
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchEvents } from "../events/eventsSlice"
 //Will need to change links to Nav from react router dom
 
 
 function Sidebar() {
 
-    const events = []
+    const events = useSelector((state) => state.events.entities)
 
+    const dispatch = useDispatch();
 
-    function loadEvents() {
+    useEffect(() => {
+        dispatch(fetchEvents())
+    }, [dispatch])
 
-        return (
+    // function loadEvents() {
+
+    //     return (
+    //         events.map((event) => {
+    //             return (
+    //                 <Nav.Item>
+    //                     <Nav.Link href={`/events/${event.id}`}>{event.title}</Nav.Link>
+    //                 </Nav.Item>
+    //             )
+    //         })
+    //     )
+    // }
+
+    const loadEvents = 
             events.map((event) => {
                 return (
-                    <Nav.Item>
+                    <Nav.Item key={event.id}>
                         <Nav.Link href={`/events/${event.id}`}>{event.title}</Nav.Link>
                     </Nav.Item>
                 )
-
             })
-
-        )
-
-
-    }
 
 
     return (
@@ -32,15 +44,7 @@ function Sidebar() {
         activeKey="/home"
         variant="pills"
         >
-        <Nav.Item >
-            <Nav.Link href="/home">Active</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
-        </Nav.Item>
+            {loadEvents}
 
         </Nav>
 
