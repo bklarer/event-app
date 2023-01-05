@@ -5,6 +5,7 @@ import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react"
+import Event from "../events/Event";
 
 function Layout () {
 
@@ -28,6 +29,7 @@ function Layout () {
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/event/new" element={<CreateEvent/>} />
                 </Routes>
+                <Event/>
 
             </Col>
 
