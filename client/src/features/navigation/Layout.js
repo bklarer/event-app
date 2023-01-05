@@ -1,11 +1,11 @@
 import {Container, Row, Col} from "react-bootstrap";
 import Sidebar from "./Sidebar"
-import Login from "../user/Login"
 import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react"
 import Event from "../events/Event";
+import Home from "./Home"
 
 function Layout () {
 
@@ -24,9 +24,10 @@ function Layout () {
             {showSidebar} 
             <Col  xs={4} >
                 <Routes>
-                    <Route exact path="/login" element={<Login/>} />
+                    <Route exact path="/" element={<Home/>} />
                     <Route exact path="/signup" element={<Signup/>}/>
-                    <Route exact path="/event/new" element={<CreateEvent/>} />
+                    <Route exact path="/events/new" element={<CreateEvent/>} />
+                    <Route exact path="/events/:eventID" element={<Event/>}/>
                 </Routes>
                 <Event/>
 
