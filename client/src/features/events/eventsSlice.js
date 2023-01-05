@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 // export const fetchEvents = createAsyncThunk("events/fetchEvents", () => {
-//     return fetch("/events")
+//     return fetch("/api/events")
 //         .then((response) => response.json())
 //         .then((events) => events)
 // })

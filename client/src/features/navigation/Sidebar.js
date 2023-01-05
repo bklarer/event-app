@@ -5,6 +5,26 @@ import Nav from "react-bootstrap/Nav";
 
 function Sidebar() {
 
+    const events = []
+
+
+    function loadEvents() {
+
+        return (
+            events.map((event) => {
+                return (
+                    <Nav.Item>
+                        <Nav.Link href={`/events/${event.id}`}>{event.title}</Nav.Link>
+                    </Nav.Item>
+                )
+
+            })
+
+        )
+
+
+    }
+
 
     return (
 
