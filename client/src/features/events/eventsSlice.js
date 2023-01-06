@@ -13,7 +13,7 @@ const eventsSlice = createSlice({
     name: "events",
     initialState: {
         entities: [],
-        status: "idle",
+        status: null,
     },
     reducers: {
         eventAdded(state, action) {
@@ -33,9 +33,14 @@ const eventsSlice = createSlice({
             state.status = "loading"
         },
         [fetchEvents.fulfilled](state, action) {
-            state.entities = action.payload;
-            state.status = "idle";
+            state.entities = action.payload
+            state.status = "idle"
         },
+        [fetchEvents.rejected](state, action) {
+            state.status = "failed";
+            state.error = action.error.message
+        },
+
     },
 
 })

@@ -1,16 +1,19 @@
 import Nav from "react-bootstrap/Nav";
-import React from "react";
-import { useSelector } from "react-redux";
-
-import {LinkContainer} from "react-router-bootstrap";
+import {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents } from "../events/eventsSlice"
+import { LinkContainer } from "react-router-bootstrap";
 //Will need to change links to Nav from react router dom
 
 
 function Sidebar() {
 
     const events = useSelector((state) => state.events.entities)
+    const eventStatus = useSelector((state) => state.events.status)
 
-    console.log(events)
+    const dispatch = useDispatch()
+
+    console.log("events", events)
 
     const loadEvents = 
             events.map((event) => {

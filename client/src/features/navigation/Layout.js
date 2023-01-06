@@ -3,27 +3,21 @@ import Sidebar from "./Sidebar"
 import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Event from "../events/Event";
 import Home from "./Home"
-import { useDispatch } from "react-redux";
-import { fetchEvents } from "../events/eventsSlice"
+
+
+
 
 function Layout () {
 
     const [loggedIn, setLoggedIn] = useState(true)
-
 //If logged in, show <Side/>
 
     const sidebar = <Col xs={2} > <Sidebar /> </Col>
     const showSidebar = loggedIn ? sidebar : null
 
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchEvents())
-    }, [dispatch])
 
     return (
 
