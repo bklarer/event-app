@@ -26,6 +26,11 @@ function NavigationBar () {
                             <Nav.Link style={{padding: 5}}>Login</Nav.Link>
                         </LinkContainer>
                     </Nav.Item>
+                    <Nav.Item>
+                        <LinkContainer style={{textDecoration: "none"}} to="/events/new">
+                            <Nav.Link style={{padding: 5}}>Create Event</Nav.Link>
+                        </LinkContainer>
+                    </Nav.Item>
                 </Nav>
             </Container>
 

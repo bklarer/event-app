@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import { useParams } from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 
 
 
@@ -11,6 +12,7 @@ function Event () {
     const defaultEvent = {title: "Event not Found", description: "", date: "", address: ""}
     const events = useSelector((state) => state.events.entities)
     const findEvent = events.find((event) => event.id === parseInt(eventId))
+
     const currentEvent = findEvent ? findEvent : defaultEvent
 
     console.log("findEvent", findEvent)
