@@ -1,25 +1,52 @@
 import { useState } from "react"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
-
+import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { eventUpdated } from './eventsSlice'
 
 
 function EditEvent () {
+    const dispatch = useDispatch()
 
     const [updateEvent, setUpdateEvent] = useState({
         title: "",
         description: "",
-        img: "",
+        img_url: "",
         date: "",
-        time: ""
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        creator_id: 0
     })
+
+    const { eventId } = useParams()
 
 
     function handleChange(e) {
         const {name, value} = e.target
         setUpdateEvent((updateEvent) => ({...updateEvent, [name]: value}))
     }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch(`/api/events/${eventId}/edit`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({updateEvent})
+        })
+        .then(resp => resp.json())
+        .then(event => {
+            dispatch(eventUpdated(event))
+        })
+
+
+    }
+
 
     let date = new Date().toISOString().slice(0, 10)
 
@@ -55,9 +82,9 @@ function EditEvent () {
                     <Form.Control
                         type="text" 
                         placeholder="Image URL"
-                        name="img"
+                        name="img_url"
                         onChange={handleChange}
-                        value={updateEvent.img}
+                        value={updateEvent.img_url}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -71,12 +98,39 @@ function EditEvent () {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Time</Form.Label> 
+                    <Form.Label>Address</Form.Label> 
                     <Form.Control 
-                        type="time"
-                        name="time"
+                        type="text"
+                        name="address"
                         onChange={handleChange}
-                        value={updateEvent.time}
+                        value={updateEvent.address}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>City</Form.Label> 
+                    <Form.Control 
+                        type="text"
+                        name="city"
+                        onChange={handleChange}
+                        value={updateEvent.city}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>State</Form.Label> 
+                    <Form.Control 
+                        type="text"
+                        name="state"
+                        onChange={handleChange}
+                        value={updateEvent.state}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Zip</Form.Label> 
+                    <Form.Control 
+                        type="text"
+                        name="zip"
+                        onChange={handleChange}
+                        value={updateEvent.zip}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">
