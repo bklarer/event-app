@@ -20,8 +20,18 @@ const eventsSlice = createSlice({
             state.entities.push(action.payload)
         },
         eventUpdated(state, action) {
-            const event = state.entities.find((event => event.id === action.payload.id))
-            event.url = action.payload //will have to look at this
+            const existingEvent = state.entities.find((event => event.id === action.payload.id))
+            if (existingEvent) {
+                existingEvent.title = action.payload.title
+                existingEvent.description = action.payload.description
+                existingEvent.img_url = action.payload.img_url
+                existingEvent.date = action.payload.date
+                existingEvent.address = action.payload.address
+                existingEvent.city = action.payload.city
+                existingEvent.state = action.payload.state
+                existingEvent.zip = action.payload.zip
+
+            } //will have to look at this
         },
         eventRemoved(state, action) {
             const index = state.entities.findIndex((event)=> event.id === action.payload);
@@ -45,7 +55,9 @@ const eventsSlice = createSlice({
 
 })
 
-
+export const selectAllEvents = state => state.events.entities
+export const selectEventById = (state, eventId) =>
+    state.events.entities.find(event => event.id === eventId)
 
 
 export const { eventAdded, eventUpdated, eventRemoved } = eventsSlice.actions;

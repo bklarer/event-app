@@ -1,14 +1,15 @@
 import { useState } from "react"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { eventUpdated } from './eventsSlice'
 
 
 function EditEvent () {
     const dispatch = useDispatch()
-
+    const history = useHistory()
+    
     const [updateEvent, setUpdateEvent] = useState({
         title: "",
         description: "",
