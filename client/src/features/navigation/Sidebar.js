@@ -1,7 +1,7 @@
 import Nav from "react-bootstrap/Nav";
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchEvents } from "../events/eventsSlice"
+import React from "react";
+import { useSelector } from "react-redux";
+
 import {LinkContainer} from "react-router-bootstrap";
 //Will need to change links to Nav from react router dom
 
@@ -10,12 +10,7 @@ function Sidebar() {
 
     const events = useSelector((state) => state.events.entities)
 
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchEvents())
-    }, [dispatch])
-
+    console.log(events)
 
     const loadEvents = 
             events.map((event) => {

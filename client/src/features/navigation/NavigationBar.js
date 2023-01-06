@@ -22,7 +22,7 @@ function NavigationBar () {
                         </LinkContainer>
                     </Nav.Item>
                     <Nav.Item>
-                        <LinkContainer style={{textDecoration: "none"}} to="/Home">
+                        <LinkContainer style={{textDecoration: "none"}} to="/">
                             <Nav.Link style={{padding: 5}}>Login</Nav.Link>
                         </LinkContainer>
                     </Nav.Item>
