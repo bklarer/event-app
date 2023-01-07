@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { useState } from "react"
 import Event from "../events/Event";
 import Home from "./Home"
+import EditEvent from "../events/EditEvent";
 
 
 
@@ -30,6 +31,7 @@ function Layout () {
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/events/new" element={<CreateEvent/>} />
                     <Route exact path="/events/:eventId" element={<Event/>}/>
+                    <Route exact path="/events/:eventId/edit" element={<EditEvent/>}/>
                 </Routes>
 
             </Col>

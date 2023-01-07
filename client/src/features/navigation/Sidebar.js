@@ -30,7 +30,7 @@ function Sidebar() {
     return (
 
         <Nav className="col-md-12 d-none d-md-block bg-light"
-        activeKey="/home"
+        activeKey="/events"
         variant="pills"
         >
             {loadEvents}

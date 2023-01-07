@@ -14,8 +14,9 @@ class Api::EventsController < ApplicationController
         render json: event
     end
 
-    def updated
+    def update
         event = find_event
+        event.update(event_params)
         render json: event
     end
 

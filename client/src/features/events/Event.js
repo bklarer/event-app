@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -31,7 +31,12 @@ function Event () {
             <p>{currentEvent.description}</p>
             <p>{currentEvent.address}</p>
             <p>People Attending:</p>
-            <Button>Going</Button>
+            <Button style={{"margin": "10px"}}>Going</Button>
+            <Link to={`/events/${currentEvent.id}/edit`}>
+                <Button style={{"margin": "10px"}}>Edit</Button>
+            </Link>
+            <Button style={{"margin": "10px"}}>Delete</Button>
+
 
         </div>
 

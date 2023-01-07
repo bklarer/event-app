@@ -1,14 +1,15 @@
 import { useState } from "react"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useParams, useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { eventUpdated } from './eventsSlice'
-
+import { useParams, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { eventUpdated, selectEventById } from './eventsSlice'
 
 function EditEvent () {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
+    const { eventId } = useParams()
+
     
     const [updateEvent, setUpdateEvent] = useState({
         title: "",
@@ -18,12 +19,13 @@ function EditEvent () {
         address: "",
         city: "",
         state: "",
-        zip: "",
-        creator_id: 0
+        zip: ""
     })
 
-    const { eventId } = useParams()
+    const selectedEvent = useSelector(state => selectEventById(state, parseInt(eventId)))
 
+    
+    console.log("selected event", selectedEvent)
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -32,17 +34,18 @@ function EditEvent () {
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch(`/api/events/${eventId}/edit`, {
+        fetch(`/api/events/${eventId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
             },
-            body: JSON.stringify({updateEvent})
+            body: JSON.stringify({...updateEvent, creator_id: selectedEvent.creator_id})
         })
         .then(resp => resp.json())
         .then(event => {
             dispatch(eventUpdated(event))
+            navigate(`/events/${eventId}`)
         })
 
 
@@ -57,7 +60,8 @@ function EditEvent () {
 
 
         <div>
-            <Form>
+            <h1>Edit Event</h1>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Event Title</Form.Label>
                     <Form.Control 
@@ -102,6 +106,7 @@ function EditEvent () {
                     <Form.Label>Address</Form.Label> 
                     <Form.Control 
                         type="text"
+                        placeholder="Address"
                         name="address"
                         onChange={handleChange}
                         value={updateEvent.address}
@@ -111,6 +116,7 @@ function EditEvent () {
                     <Form.Label>City</Form.Label> 
                     <Form.Control 
                         type="text"
+                        placeholder="City"
                         name="city"
                         onChange={handleChange}
                         value={updateEvent.city}
@@ -120,6 +126,7 @@ function EditEvent () {
                     <Form.Label>State</Form.Label> 
                     <Form.Control 
                         type="text"
+                        placeholder="State"
                         name="state"
                         onChange={handleChange}
                         value={updateEvent.state}
@@ -129,6 +136,7 @@ function EditEvent () {
                     <Form.Label>Zip</Form.Label> 
                     <Form.Control 
                         type="text"
+                        placeholder="Zip"
                         name="zip"
                         onChange={handleChange}
                         value={updateEvent.zip}
