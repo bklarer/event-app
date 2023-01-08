@@ -1,19 +1,33 @@
 import Button from 'react-bootstrap/Button';
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
+import { eventRemoved } from './eventsSlice';
 
 
 
 
 function Event () {
     const { eventId } = useParams()
-
+    const dispatch = useDispatch()
 //Will find if there is a ticket that matches the user and the event
     const defaultEvent = {title: "Event not Found", description: "", date: "", address: ""}
     const events = useSelector((state) => state.events.entities)
     const findEvent = events.find((event) => event.id === parseInt(eventId))
-
+    const navigate = useNavigate()
+    
     const currentEvent = findEvent ? findEvent : defaultEvent
+
+    function deleteEvent() {
+        fetch(`/api/events/${eventId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(() => {
+            dispatch(eventRemoved(eventId))
+            navigate("../")
+    })
+    }
 
     console.log("findEvent", findEvent)
     console.log("eventId", eventId)
@@ -35,7 +49,7 @@ function Event () {
             <Link to={`/events/${currentEvent.id}/edit`}>
                 <Button style={{"margin": "10px"}}>Edit</Button>
             </Link>
-            <Button style={{"margin": "10px"}}>Delete</Button>
+            <Button onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
 
 
         </div>
