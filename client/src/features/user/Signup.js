@@ -1,9 +1,13 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+
 
 
 function Signup () {
+
+    const dispatch = useDispatch()
 
     const [signup, setSignup] = useState({
         username: "",
@@ -20,13 +24,38 @@ function Signup () {
         setSignup((signup) => ({...signup, [name]: value}))
     }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch(`/api/signup`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(signup)
+        })
+        .then(resp => resp.json())
+        .then(user => {
+            console.log(user)
+            setSignup({
+                username: "",
+                first_name: "",
+                last_name: "",
+                password: "",
+                confirm_password: ""
+            })
+        })
+
+
+    }
+
     console.log(signup)
 
     return (
 
         <div>
             <h1>Signup</h1>
-            <Form >
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control 

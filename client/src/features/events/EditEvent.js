@@ -25,6 +25,7 @@ function EditEvent () {
     const selectedEvent = useSelector(state => selectEventById(state, parseInt(eventId)))
 
     useEffect(() => setUpdateEvent(selectedEvent),[selectedEvent])
+    
     console.log("selected event", selectedEvent)
 
     function handleChange(e) {
