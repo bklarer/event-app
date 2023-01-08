@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useParams, useNavigate } from 'react-router-dom'
@@ -24,7 +24,7 @@ function EditEvent () {
 
     const selectedEvent = useSelector(state => selectEventById(state, parseInt(eventId)))
 
-    
+    useEffect(() => setUpdateEvent(selectedEvent),[selectedEvent])
     console.log("selected event", selectedEvent)
 
     function handleChange(e) {
@@ -51,6 +51,10 @@ function EditEvent () {
 
     }
 
+    
+
+    
+    let eventDate = updateEvent.date.slice(0, 10)
 
     let date = new Date().toISOString().slice(0, 10)
 
@@ -98,7 +102,7 @@ function EditEvent () {
                         type="date"
                         name="date"
                         onChange={handleChange}
-                        value={updateEvent.date}
+                        value={eventDate}
                         min={date}
                     />
                 </Form.Group>
