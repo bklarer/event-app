@@ -1,12 +1,15 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { registerUser } from './userActions';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Signup () {
-
+    const { loading, userInfo, error, success} = useSelector((state) => state.user)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [signup, setSignup] = useState({
@@ -14,7 +17,7 @@ function Signup () {
         first_name: "",
         last_name: "",
         password: "",
-        confirm_password: ""
+        password_confirmation: ""
     })
 
 
@@ -24,19 +27,9 @@ function Signup () {
         setSignup((signup) => ({...signup, [name]: value}))
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e){
         e.preventDefault()
-        fetch(`/api/signup`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify(signup)
-        })
-        .then(resp => resp.json())
-        .then(user => {
-            console.log(user)
+        dispatch(registerUser(signup))
             setSignup({
                 username: "",
                 first_name: "",
@@ -44,10 +37,32 @@ function Signup () {
                 password: "",
                 confirm_password: ""
             })
-        })
-
-
+        navigate("/")
     }
+
+
+    // function handleSubmit(e) {
+    //     e.preventDefault()
+    //     fetch(`/api/signup`, {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Accept: "application/json"
+    //         },
+    //         body: JSON.stringify(signup)
+    //     })
+    //     .then(resp => resp.json())
+    //     .then(user => {
+    //         console.log(user)
+            // setSignup({
+            //     username: "",
+            //     first_name: "",
+            //     last_name: "",
+            //     password: "",
+            //     confirm_password: ""
+            // })
+    //     })
+    // }
 
     console.log(signup)
 
@@ -101,9 +116,9 @@ function Signup () {
                     <Form.Control 
                         type="password" 
                         placeholder="Confirm Password"
-                        name="confirm_password"
+                        name="password_confirmation"
                         onChange={handleChange}
-                        value={signup.confirm_password}
+                        value={signup.password_confirmation}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">
