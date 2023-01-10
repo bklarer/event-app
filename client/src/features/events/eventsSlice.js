@@ -31,7 +31,7 @@ const eventsSlice = createSlice({
                 existingEvent.state = action.payload.state
                 existingEvent.zip = action.payload.zip
 
-            } //will have to look at this
+            }
         },
         eventRemoved(state, action) {
             const index = state.entities.findIndex((event)=> event.id === action.payload);

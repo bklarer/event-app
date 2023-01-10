@@ -41,11 +41,6 @@ function Event () {
 
     const eventTime = parseInt(hour) > 12 ? `${hour - 12}:${minute} pm` : `${hour}:${minute}am`
 
-    console.log(`${hour} hr ${minute}min`)
-
-    console.log("formatted time", formattedTime)
-
-
 
     return (
 

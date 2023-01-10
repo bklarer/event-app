@@ -5,12 +5,10 @@ import {LinkContainer} from "react-router-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../user/userSlice"
 
-// Will need state that shows if a user is logged in, which will change what shows in Navigation
-// May want to change NavBar
 
 function NavigationBar () {
     const dispatch = useDispatch()
-    // <NavLink style={{textDecoration: "none", color: "white", padding: 5}} to="/login">Login</NavLink>
+
 
     const {userInfo} = useSelector((state) => state.user)
 
