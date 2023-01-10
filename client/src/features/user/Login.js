@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 function Login () {
     const {userInfo} = useSelector((state) => state.user)
+    const events = useSelector((state) => state.events.entities)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [login, setLogin] = useState({
@@ -16,6 +17,9 @@ function Login () {
         password: ""
 
     })
+
+    const firstEvent = events[0]
+
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -25,7 +29,7 @@ function Login () {
     function handleSubmit(e) {
         e.preventDefault()
         dispatch(userLogin(login))
-        navigate("/events")
+        navigate(`/events/${firstEvent.id}`)
     }
 
 
