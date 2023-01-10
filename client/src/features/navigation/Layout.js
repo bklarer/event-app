@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 function Layout () {
     const { userInfo } = useSelector((state) => state.user)
 
-    const sidebar = <Col xs={2} > <Sidebar /> </Col>
+    const sidebar = <Col xs={3} > <Sidebar /> </Col>
     const showSidebar = userInfo? sidebar : null
     
 
@@ -25,7 +25,7 @@ function Layout () {
         <Container >
         <Row className="justify-content-md-center">
             {showSidebar} 
-            <Col  xs={4} >
+            <Col  md={5} >
                 <Routes>
                     <Route exact path="/" element={<Home/>} />
                     <Route exact path="/signup" element={<Signup/>}/>

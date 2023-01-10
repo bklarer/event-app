@@ -1,4 +1,6 @@
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { eventRemoved } from './eventsSlice';
@@ -44,26 +46,24 @@ function Event () {
 
     return (
 
+            <Container className="justify-content-md-center">
+                <Image width={500} src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
 
-        <div>
+                    <h1>{currentEvent.title}</h1>
+                    <p>{"Date: " + eventDate}</p>
+                    <p>{"Time: " + eventTime}</p>
+                    <p>{currentEvent.description}</p>
+                    <h4>Address</h4>
+                    <p>{currentEvent.address}</p>
+                    <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
+                    <h5>People Attending: 5</h5>
+                    <Button style={{"margin": "10px"}}>Going</Button>
+                    <Link to={`/events/${currentEvent.id}/edit`}>
+                        <Button style={{"margin": "10px"}}>Edit</Button>
+                    </Link>
+                    <Button onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
+            </Container>
 
-            <img src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
-            <h1>{currentEvent.title}</h1>
-            <p>{"Date: " + eventDate}</p>
-            <p>{"Time: " + eventTime}</p>
-            <p>{currentEvent.description}</p>
-            <h4>Address</h4>
-            <p>{currentEvent.address}</p>
-            <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
-            <h5>People Attending: 5</h5>
-            <Button style={{"margin": "10px"}}>Going</Button>
-            <Link to={`/events/${currentEvent.id}/edit`}>
-                <Button style={{"margin": "10px"}}>Edit</Button>
-            </Link>
-            <Button onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
-
-
-        </div>
 
 
     )

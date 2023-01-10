@@ -95,7 +95,7 @@ function EditEvent () {
                 <Form.Group className="mb-3">
                     <Form.Label>Event Description</Form.Label> 
                     <Form.Control 
-                        type="text" 
+                        as="textarea" 
                         placeholder="Description"
                         name="description"
                         onChange={handleChange}
