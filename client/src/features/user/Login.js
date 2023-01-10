@@ -1,12 +1,16 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react"
-
+import  { userLogin } from "./userActions"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 
 
 function Login () {
-
+    const {userInfo} = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [login, setLogin] = useState({
         username: "",
         password: ""
@@ -18,11 +22,18 @@ function Login () {
         setLogin((login) => ({...login, [name]: value}))
     }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        dispatch(userLogin(login))
+        navigate("/events")
+    }
+
+
     return (
 
         <div>
             <h1>Login</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control 
