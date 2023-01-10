@@ -20,7 +20,6 @@ function NavigationBar () {
             if(r.ok) {
                 console.log("logout")
                 dispatch(logout())
-                console.log("user info", userInfo)
             }
         })
 
@@ -54,8 +53,6 @@ function NavigationBar () {
             </LinkContainer>
         </Nav.Item>
         </>
-
-    console.log(userInfo)
 
     const componentsToShow = userInfo? loggedInComponents : loggedOutComponents
 

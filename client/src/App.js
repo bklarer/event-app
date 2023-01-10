@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const { loading } = useSelector((state) => state.user)
-  const showLoading = loading? <Loading/> : null
-
 
   return (
     <div className="App">
