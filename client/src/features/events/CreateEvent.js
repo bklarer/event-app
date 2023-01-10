@@ -33,7 +33,6 @@ function CreateEvent () {
         creator_id: id
     }
 
-    console.log("formatted event",formattedEvent)
 
 
     function handleChange(e) {

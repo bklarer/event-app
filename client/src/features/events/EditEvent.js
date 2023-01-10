@@ -16,6 +16,7 @@ function EditEvent () {
         description: "",
         img_url: "",
         date: "",
+        time: "",
         address: "",
         city: "",
         state: "",
@@ -24,9 +25,31 @@ function EditEvent () {
 
     const selectedEvent = useSelector(state => selectEventById(state, parseInt(eventId)))
 
-    useEffect(() => setUpdateEvent(selectedEvent),[selectedEvent])
+
+    const formattedEvent = {
+        title: updateEvent.title,
+        description: updateEvent.description,
+        img_url: updateEvent.img_url,
+        date: updateEvent.date + "T" + updateEvent.time + ":00",
+        address: updateEvent.address,
+        city: updateEvent.city,
+        state: updateEvent.state,
+        zip: updateEvent.zip,
+        creator_id: selectedEvent.creator_id
+    }
+
+    useEffect(() => setUpdateEvent({
+        title: selectedEvent.title,
+        description: selectedEvent.description,
+        img_url: selectedEvent.img_url,
+        date: selectedEvent.date.slice(0, 10),
+        time: selectedEvent.date.slice(11, 16),
+        address: selectedEvent.address,
+        city: selectedEvent.city,
+        state: selectedEvent.state,
+        zip: selectedEvent.zip,
+    }),[selectedEvent])
     
-    console.log("selected event", selectedEvent)
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -41,24 +64,16 @@ function EditEvent () {
                 "Content-Type": "application/json",
                 Accept: "application/json",
             },
-            body: JSON.stringify({...updateEvent, creator_id: selectedEvent.creator_id})
+            body: JSON.stringify(formattedEvent)
         })
         .then(resp => resp.json())
         .then(event => {
             dispatch(eventUpdated(event))
             navigate(`/events/${eventId}`)
         })
-
-
     }
-
     
-
-    
-    let eventDate = updateEvent.date.slice(0, 10)
-
     let date = new Date().toISOString().slice(0, 10)
-
 
     return (
 
@@ -103,8 +118,17 @@ function EditEvent () {
                         type="date"
                         name="date"
                         onChange={handleChange}
-                        value={eventDate}
+                        value={updateEvent.date}
                         min={date}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Time</Form.Label> 
+                    <Form.Control 
+                        type="time"
+                        name="time"
+                        onChange={handleChange}
+                        value={updateEvent.time}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">

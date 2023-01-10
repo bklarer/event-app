@@ -7,14 +7,13 @@ import Event from "../events/Event";
 import Home from "./Home"
 import EditEvent from "../events/EditEvent";
 import { useSelector } from "react-redux";
-import Loading from "./Loading"
 
 
 
 
 
 function Layout () {
-    const { userInfo, loading } = useSelector((state) => state.user)
+    const { userInfo } = useSelector((state) => state.user)
 
     const sidebar = <Col xs={2} > <Sidebar /> </Col>
     const showSidebar = userInfo? sidebar : null

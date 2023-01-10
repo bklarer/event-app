@@ -45,9 +45,6 @@ function Event () {
 
     console.log("formatted time", formattedTime)
 
-    console.log("findEvent", findEvent)
-    console.log("eventId", eventId)
-    console.log("events", events)
 
 
     return (
