@@ -1,11 +1,12 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { eventAdded } from './eventsSlice'
 
 function CreateEvent () {
     const dispatch = useDispatch()
+    const {id} = useSelector((state) => state.user.userInfo)
 
 
     const [newEvent, setNewEvent] = useState({
@@ -13,11 +14,26 @@ function CreateEvent () {
         description: "",
         img_url: "",
         date: "",
+        time: "",
         address: "",
         city: "",
         state: "",
         zip: ""
     })
+
+    const formattedEvent = {
+        title: newEvent.title,
+        description: newEvent.description,
+        img_url: newEvent.img_url,
+        date: newEvent.date + "T" + newEvent.time + ":00",
+        address: newEvent.address,
+        city: newEvent.city,
+        state: newEvent.state,
+        zip: newEvent.zip,
+        creator_id: id
+    }
+
+    console.log("formatted event",formattedEvent)
 
 
     function handleChange(e) {
@@ -33,21 +49,23 @@ function CreateEvent () {
                 "Content-Type": "application/json",
                 Accept: "application/json",
             },
-            body: JSON.stringify({...newEvent, creator_id: 1}),
+            body: JSON.stringify(formattedEvent),
         })
         .then(resp => resp.json())
         .then(event => {
-                dispatch(eventAdded({...event, creator_id: 1}))
+                dispatch(eventAdded(event))
                 setNewEvent({
                     title: "",
                     description: "",
                     img_url: "",
                     date: "",
+                    time: "",
                     address: "",
                     city: "",
                     state: "",
                     zip: ""
                 })
+            console.log(event)
             })
     }
 
@@ -103,6 +121,15 @@ function CreateEvent () {
                         onChange={handleChange}
                         value={newEvent.date}
                         min={date}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Time</Form.Label> 
+                    <Form.Control 
+                        type="time"
+                        name="time"
+                        onChange={handleChange}
+                        value={newEvent.time}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">

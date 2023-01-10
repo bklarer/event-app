@@ -25,9 +25,25 @@ function Event () {
             },
         }).then(() => {
             dispatch(eventRemoved(eventId))
-            navigate("../")
+            navigate("./events")
     })
     }
+
+    const formattedDate = currentEvent.date.slice(0, 10)
+    const month = formattedDate.slice(5, 7)
+    const day = formattedDate.slice(8,10)
+    const year = formattedDate.slice(0 ,4)
+    const eventDate = `${month}-${day}-${year}`
+
+    const formattedTime = currentEvent.date.slice(11,16)
+    const hour = formattedTime.slice(0,2)
+    const minute = formattedTime.slice(3,5)
+
+    const eventTime = parseInt(hour) > 12 ? `${hour - 12}:${minute} pm` : `${hour}:${minute}am`
+
+    console.log(`${hour} hr ${minute}min`)
+
+    console.log("formatted time", formattedTime)
 
     console.log("findEvent", findEvent)
     console.log("eventId", eventId)
@@ -41,10 +57,13 @@ function Event () {
 
             <img src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
             <h1>{currentEvent.title}</h1>
-            <p>{currentEvent.date}</p>
+            <p>{"Date: " + eventDate}</p>
+            <p>{"Time: " + eventTime}</p>
             <p>{currentEvent.description}</p>
+            <h4>Address</h4>
             <p>{currentEvent.address}</p>
-            <p>People Attending:</p>
+            <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
+            <h5>People Attending: 5</h5>
             <Button style={{"margin": "10px"}}>Going</Button>
             <Link to={`/events/${currentEvent.id}/edit`}>
                 <Button style={{"margin": "10px"}}>Edit</Button>

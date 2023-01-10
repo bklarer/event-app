@@ -1,43 +1,30 @@
 import './App.css';
 import NavagationBar from './features/navigation/NavigationBar';
 import Layout from './features/navigation/Layout';
-
-/*
-
-Frontend
-
-sidebar through bootstrap?
-
-Components
-  1. Signup Form
-  2. Login
-  3. Events (create filter for My Events)
-        - Sidebar
-        - Event - map out
-        - Single Event Page
-  4. Create Event
-
-
-  Create Redux dependancies and state
-
-  Should I have 2 navigation components?
-
-Backend
-1. Create Models, Controllers, Serializers, Routes
-2. User information encryption through BCrypt
-3. Create Validations for client submitted data
-
-*/
+import Loading from "./features/navigation/Loading"
+import { useSelector } from "react-redux";
 
 
 
 
 
 function App() {
+  const { loading } = useSelector((state) => state.user)
+  const showLoading = loading? <Loading/> : null
+
+
   return (
     <div className="App">
-      <NavagationBar/>
-      <Layout/>
+      {loading ? (
+        <Loading/>
+      ) : (        
+      <>
+        <NavagationBar/>
+        <Layout/>
+      </>
+      )}
+
+      
     </div>
   );
 }
