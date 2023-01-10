@@ -72,7 +72,7 @@ function Signup () {
             <h1>Signup</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label></Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="Username"
@@ -82,7 +82,7 @@ function Signup () {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>First Name</Form.Label>
+                    <Form.Label></Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="First Name" 
@@ -92,7 +92,7 @@ function Signup () {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Last Name</Form.Label>
+                    <Form.Label></Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="Last Name" 
@@ -102,7 +102,7 @@ function Signup () {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label> 
+                    <Form.Label></Form.Label> 
                     <Form.Control 
                         type="password" 
                         placeholder="Password"
@@ -112,7 +112,7 @@ function Signup () {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Confirm Password</Form.Label> 
+                    <Form.Label></Form.Label> 
                     <Form.Control 
                         type="password" 
                         placeholder="Confirm Password"
