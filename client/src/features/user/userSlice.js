@@ -4,7 +4,7 @@ import { userLogin } from "./userActions"
 
 const initialState = {
     loading: false,
-    userInfo: {},
+    userInfo: null,
     userToken: null,
     error: null,
     success: false

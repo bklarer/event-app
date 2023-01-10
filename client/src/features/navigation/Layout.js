@@ -3,22 +3,20 @@ import Sidebar from "./Sidebar"
 import Signup from "../user/Signup"
 import CreateEvent from "../events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react"
 import Event from "../events/Event";
 import Home from "./Home"
 import EditEvent from "../events/EditEvent";
+import { useSelector } from "react-redux";
+
 
 
 
 
 function Layout () {
-
-    const [loggedIn, setLoggedIn] = useState(true)
-//If logged in, show <Side/>
+    const { userInfo} = useSelector((state) => state.user)
 
     const sidebar = <Col xs={2} > <Sidebar /> </Col>
-    const showSidebar = loggedIn ? sidebar : null
-
+    const showSidebar = userInfo? sidebar : null
 
     return (
 
