@@ -25,7 +25,9 @@ function Event () {
             headers: {
                 "Content-Type": "application/json"
             },
-        }).then(() => {
+        })
+        .then(response => response.json())
+        .then(() => {
             dispatch(eventRemoved(eventId))
             navigate("./events")
     })
