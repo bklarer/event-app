@@ -47,7 +47,7 @@ function Event () {
     return (
 
             <Container className="justify-content-md-center">
-                <Image width={240} className="fluid" src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
+                <Image width={360} className="fluid" src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
 
                     <h1>{currentEvent.title}</h1>
                     <p>{"Date: " + eventDate}</p>
