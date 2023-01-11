@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-
 export const registerUser = createAsyncThunk(
     `user/signup`,
     async (data) => await(
@@ -13,6 +12,9 @@ export const registerUser = createAsyncThunk(
             body: JSON.stringify(data)
         })
         .then(resp => resp.json())
+        .then(user => {
+            return user
+        })
     )
 )
 
@@ -34,3 +36,14 @@ export const userLogin = createAsyncThunk(
 
     )
 )
+
+export const checkLogin = createAsyncThunk(
+    `user/login`,
+    async () => await(
+        fetch("/api/me")
+            .then((response) => response.json())
+            .then ((user) => {
+                return user
+            })
+        )
+    )

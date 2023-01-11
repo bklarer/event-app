@@ -11,8 +11,6 @@ function Sidebar() {
 
 
 
-    console.log("events", events)
-
     const loadEvents = 
             events.map((event) => {
                 return (

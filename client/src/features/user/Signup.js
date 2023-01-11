@@ -36,33 +36,8 @@ function Signup () {
                 last_name: "",
                 password: "",
                 confirm_password: ""
-            })
-        navigate("/")
+            }).then(navigate("/events"))
     }
-
-
-    // function handleSubmit(e) {
-    //     e.preventDefault()
-    //     fetch(`/api/signup`, {
-    //         method: 'POST',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Accept: "application/json"
-    //         },
-    //         body: JSON.stringify(signup)
-    //     })
-    //     .then(resp => resp.json())
-    //     .then(user => {
-    //         console.log(user)
-            // setSignup({
-            //     username: "",
-            //     first_name: "",
-            //     last_name: "",
-            //     password: "",
-            //     confirm_password: ""
-            // })
-    //     })
-    // }
 
     console.log(signup)
 

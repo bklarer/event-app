@@ -28,8 +28,7 @@ function Login () {
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(userLogin(login))
-        navigate(`/events/${firstEvent.id}`)
+        dispatch(userLogin(login)).then(navigate(`/events/${firstEvent.id}`))
     }
 
 

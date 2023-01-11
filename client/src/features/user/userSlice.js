@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "./userActions";
-import { userLogin } from "./userActions"
+import { registerUser, userLogin, checkLogin } from "./userActions";
 
 const initialState = {
     loading: false,
@@ -41,11 +40,25 @@ const userSlice = createSlice({
         [registerUser.fulfilled]: (state, {payload}) => {
             state.loading = false
             state.success = true
+            state.userInfo = payload
         },
         [registerUser.rejected]: (state, {payload}) => {
             state.loading = false
             state.error = payload
         },
+        [checkLogin.pending]: (state) => {
+            state.loading = true
+            state.error = null
+        },        
+        [checkLogin.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.userInfo = payload
+            console.log("userinfo", state.userInfo)
+        },
+        [checkLogin.rejected]: (state, {payload}) => {
+            state.loading = false
+            state.error = payload
+        }
     },
 
 })
