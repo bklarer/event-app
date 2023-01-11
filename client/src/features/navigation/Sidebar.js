@@ -27,7 +27,7 @@ function Sidebar() {
 
     return (
 
-        <Nav className="col-md-12 d-none d-md-block bg-light"
+        <Nav className="col-md-12 d-md-block bg-light"
         activeKey="/events"
         variant="pills"
         >
