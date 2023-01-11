@@ -21,7 +21,7 @@ const eventsSlice = createSlice({
             state.entities.push(action.payload)
         },
         eventUpdated(state, action) {
-            const existingEvent = state.entities.find((event => event.id === action.payload.id))
+            const existingEvent = state.entities.find(event => event.id === action.payload.id)
             if (existingEvent) {
                 existingEvent.title = action.payload.title
                 existingEvent.description = action.payload.description
@@ -37,6 +37,19 @@ const eventsSlice = createSlice({
         eventRemoved(state, action) {
             const index = state.entities.findIndex((event)=> event.id === action.payload);
             state.entities.splice(index, 1)
+        },
+        ticketAdded(state, action) {
+            const existingEvent = state.entities.find(event => event.id === action.payload.event_id)
+            if(existingEvent) {
+                existingEvent.tickets.push(action.payload) 
+            }
+        },
+        ticketRemoved(state, action) {
+            const existingEvent = state.entities.find(event => event.id === action.payload.eventId)
+            const index = existingEvent.tickets.findIndex((ticket) => ticket.id === action.payload.ticketId)
+                if(existingEvent) {
+                    existingEvent.tickets.splice(index, 1)
+                }
         }
     },
     extraReducers: {
@@ -64,5 +77,5 @@ export const selectEventById = (state, eventId) =>
     state.events.entities.find(event => event.id === eventId)
 
 
-export const { eventAdded, eventUpdated, eventRemoved } = eventsSlice.actions;
+export const { eventAdded, eventUpdated, eventRemoved, ticketAdded, ticketRemoved } = eventsSlice.actions;
 export default eventsSlice.reducer

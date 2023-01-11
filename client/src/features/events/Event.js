@@ -3,7 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import { eventRemoved } from './eventsSlice';
+import { eventRemoved, ticketAdded, ticketRemoved } from './eventsSlice';
+import { useEffect, useState } from "react" 
 
 
 
@@ -14,10 +15,12 @@ function Event () {
 //Will find if there is a ticket that matches the user and the event
     const defaultEvent = {title: "Event not Found", description: "", date: "", address: ""}
     const events = useSelector((state) => state.events.entities)
+    const currentUser = useSelector((state) => state.user.userInfo)
     const findEvent = events.find((event) => event.id === parseInt(eventId))
     const navigate = useNavigate()
+    const [isGoing, setIsGoing] = useState(false)
     
-    const currentEvent = findEvent ? findEvent : defaultEvent
+
 
     function deleteEvent() {
         fetch(`/api/events/${eventId}`, {
@@ -26,12 +29,59 @@ function Event () {
                 "Content-Type": "application/json"
             },
         })
-        .then(response => response.json())
+        // .then(response => response.json())
         .then(() => {
+            navigate(`./events/${events.first}`)
             dispatch(eventRemoved(eventId))
-            navigate("./events")
     })
     }
+    
+    const currentEvent = findEvent ? findEvent : defaultEvent
+    
+    const goingButton = isGoing ? "Don't Go" : "Go"
+
+    const userTicket = currentEvent ? currentEvent.tickets.find(ticket => ticket.user_id === currentUser.id) : null
+    
+    useEffect(() =>{
+        if(userTicket) {
+            setIsGoing(true)
+        } else setIsGoing(false)
+
+    }, [userTicket])
+
+
+    const createTicketFetch = () => {
+        fetch("/api/tickets",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                accept: "application/json"
+            },
+            body: JSON.stringify({user_id: currentUser.id, event_id: currentEvent.id})
+        })
+        .then((response) => response.json())
+        .then(ticket => {
+            dispatch(ticketAdded(ticket))
+        })
+    }
+
+    const deleteTicketFetch  = () => {
+        fetch(`/api/tickets/${userTicket.id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(() => {
+            dispatch(ticketRemoved({eventId: currentEvent.id , ticketId: userTicket.id }))
+        })
+    }
+
+    const handleGoingClick = () => {
+        isGoing ? deleteTicketFetch() : createTicketFetch()
+    }
+
+    const goingButtonStyle = isGoing ? "secondary" : "success"
 
     const formattedDate = currentEvent.date.slice(0, 10)
     const month = formattedDate.slice(5, 7)
@@ -58,12 +108,12 @@ function Event () {
                     <h4>Address</h4>
                     <p>{currentEvent.address}</p>
                     <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
-                    <h5>People Attending: 5</h5>
-                    <Button style={{"margin": "10px"}}>Going</Button>
+                    <h5>People Attending: {currentEvent.length}</h5>
+                    <Button variant={goingButtonStyle} onClick={handleGoingClick} style={{"margin": "10px"}}>{goingButton}</Button>
                     <Link to={`/events/${currentEvent.id}/edit`}>
-                        <Button style={{"margin": "10px"}}>Edit</Button>
+                        <Button variant="warning" style={{"margin": "10px"}}>Edit</Button>
                     </Link>
-                    <Button onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
+                    <Button variant="danger" onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
             </Container>
 
 
