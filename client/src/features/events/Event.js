@@ -108,7 +108,7 @@ function Event () {
                     <h4>Address</h4>
                     <p>{currentEvent.address}</p>
                     <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
-                    <h5>People Attending: {currentEvent.length}</h5>
+                    <h5>People Attending: {currentEvent.tickets.length}</h5>
                     <Button variant={goingButtonStyle} onClick={handleGoingClick} style={{"margin": "10px"}}>{goingButton}</Button>
                     <Link to={`/events/${currentEvent.id}/edit`}>
                         <Button variant="warning" style={{"margin": "10px"}}>Edit</Button>
