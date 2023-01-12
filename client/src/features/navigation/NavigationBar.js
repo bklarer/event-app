@@ -37,6 +37,11 @@ function NavigationBar () {
                 <Nav.Link onClick={handleLogoutClick} style={{padding: 5}}>Logout</Nav.Link>
             </LinkContainer>
         </Nav.Item>
+        <Nav.Item>
+            <LinkContainer style={{textDecoration: "none"}} to="/account">
+                <Nav.Link style={{padding: 5}}>Account</Nav.Link>
+            </LinkContainer>
+        </Nav.Item>
         </>
 
 

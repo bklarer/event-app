@@ -7,6 +7,8 @@ import Event from "../events/Event";
 import Home from "./Home"
 import EditEvent from "../events/EditEvent";
 import { useSelector} from "react-redux";
+import Account from "../user/Account"
+
 
 
 
@@ -35,6 +37,7 @@ function Layout () {
                     <Route exact path="/events/new" element={<CreateEvent/>} />
                     <Route exact path="/events/:eventId" element={<Event/>}/>
                     <Route exact path="/events/:eventId/edit" element={<EditEvent/>}/>
+                    <Route exact path="/account" element={<Account/>}/>
                 </Routes>
 
             </Col>

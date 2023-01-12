@@ -36,7 +36,8 @@ function Signup () {
                 last_name: "",
                 password: "",
                 confirm_password: ""
-            }).then(navigate("/events"))
+            })
+        navigate("/")
     }
 
     console.log(signup)

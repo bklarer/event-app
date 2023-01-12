@@ -15,7 +15,7 @@ function App() {
   const eventLoading = useSelector((state) => state.events.loading)
   const dispatch = useDispatch()
   
-  useEffect(() => dispatch(checkLogin()).then(console.log("check state", userInfo)), [dispatch])
+  useEffect(() => dispatch(checkLogin()), [dispatch])
   
 
   return (
