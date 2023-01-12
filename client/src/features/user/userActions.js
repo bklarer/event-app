@@ -44,7 +44,7 @@ export const checkLogin = createAsyncThunk(
             .then((response) => {
                 if (response.ok) {
                  return response.json().then(user => {
-                    console.log("user", user)
+                    console.log(user)
                     return user
                 })
                 

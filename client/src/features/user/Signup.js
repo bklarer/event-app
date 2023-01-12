@@ -40,7 +40,6 @@ function Signup () {
         navigate("/")
     }
 
-    console.log(signup)
 
     return (
 

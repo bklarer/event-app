@@ -27,21 +27,31 @@ function NavigationBar () {
 
     const loggedInComponents =
         <>
-        <Nav.Item>
-            <LinkContainer style={{textDecoration: "none"}} to="/events/new">
-                <Nav.Link style={{padding: 5}}>Create Event</Nav.Link>
-            </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-            <LinkContainer style={{textDecoration: "none"}} to="/">
-                <Nav.Link onClick={handleLogoutClick} style={{padding: 5}}>Logout</Nav.Link>
-            </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-            <LinkContainer style={{textDecoration: "none"}} to="/account">
-                <Nav.Link style={{padding: 5}}>Account</Nav.Link>
-            </LinkContainer>
-        </Nav.Item>
+            <Nav.Item>
+                <LinkContainer style={{textDecoration: "none"}} to="/events/attending">
+                    <Nav.Link style={{padding: 5}}>Attending</Nav.Link>
+                </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+                <LinkContainer style={{textDecoration: "none"}} to="/events/hosting">
+                    <Nav.Link style={{padding: 5}}>Hosting</Nav.Link>
+                </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+                <LinkContainer style={{textDecoration: "none"}} to="/events/new">
+                    <Nav.Link style={{padding: 5}}>Create Event</Nav.Link>
+                </LinkContainer>
+            </Nav.Item>        
+            <Nav.Item>
+                <LinkContainer style={{textDecoration: "none"}} to="/account">
+                    <Nav.Link style={{padding: 5}}>Account</Nav.Link>
+                </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+                <LinkContainer style={{textDecoration: "none"}} to="/">
+                    <Nav.Link onClick={handleLogoutClick} style={{padding: 5}}>Logout</Nav.Link>
+                </LinkContainer>
+            </Nav.Item>
         </>
 
 
