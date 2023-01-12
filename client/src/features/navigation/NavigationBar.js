@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {LinkContainer} from "react-router-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../user/userSlice"
-
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function NavigationBar () {
     const dispatch = useDispatch()
@@ -27,21 +27,18 @@ function NavigationBar () {
 
     const loggedInComponents =
         <>
-            <Nav.Item>
+            
+            <NavDropdown menuVariant="dark" title="Events">
                 <LinkContainer style={{textDecoration: "none"}} to="/events/attending">
-                    <Nav.Link style={{padding: 5}}>Attending</Nav.Link>
+                    <NavDropdown.Item>Attending</NavDropdown.Item>
                 </LinkContainer>
-            </Nav.Item>
-            <Nav.Item>
                 <LinkContainer style={{textDecoration: "none"}} to="/events/hosting">
-                    <Nav.Link style={{padding: 5}}>Hosting</Nav.Link>
+                    <NavDropdown.Item>Hosting</NavDropdown.Item>
                 </LinkContainer>
-            </Nav.Item>
-            <Nav.Item>
                 <LinkContainer style={{textDecoration: "none"}} to="/events/new">
-                    <Nav.Link style={{padding: 5}}>Create Event</Nav.Link>
+                    <NavDropdown.Item>Create Event</NavDropdown.Item>
                 </LinkContainer>
-            </Nav.Item>        
+            </NavDropdown>        
             <Nav.Item>
                 <LinkContainer style={{textDecoration: "none"}} to="/account">
                     <Nav.Link style={{padding: 5}}>Account</Nav.Link>
