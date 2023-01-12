@@ -31,7 +31,7 @@ function Event () {
         })
         // .then(response => response.json())
         .then(() => {
-            navigate(`/events/${events.first}`)
+            navigate(`/events/${events[0].id}`)
             dispatch(eventRemoved(eventId))
     })
     }
