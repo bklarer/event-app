@@ -36,10 +36,13 @@ const eventsSlice = createSlice({
         },
         eventRemoved(state, action) {
             const index = state.entities.findIndex((event)=> event.id === action.payload);
+            console.log("entities", state.entities)
+            console.log("index", index)
             state.entities.splice(index, 1)
         },
         ticketAdded(state, action) {
             const existingEvent = state.entities.find(event => event.id === action.payload.event_id)
+            console.log("existing event", existingEvent)
             if(existingEvent) {
                 existingEvent.tickets.push(action.payload) 
             }

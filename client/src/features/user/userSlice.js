@@ -53,7 +53,6 @@ const userSlice = createSlice({
         [checkLogin.fulfilled]: (state, {payload}) => {
             state.loading = false
             state.userInfo = payload
-            console.log("userinfo", state.userInfo)
         },
         [checkLogin.rejected]: (state, {payload}) => {
             state.loading = false

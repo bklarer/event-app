@@ -29,10 +29,11 @@ function Event () {
                 "Content-Type": "application/json"
             },
         })
-        // .then(response => response.json())
         .then(() => {
             navigate(`/events/${events[0].id}`)
-            dispatch(eventRemoved(eventId))
+
+            dispatch(eventRemoved(parseInt(eventId)))
+
     })
     }
     
