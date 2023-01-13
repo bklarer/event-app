@@ -1,5 +1,5 @@
 import Nav from "react-bootstrap/Nav";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 
@@ -24,8 +24,12 @@ function Sidebar() {
         default: return events
         }}
 
+        const futureEvents = loadedEvents().filter((event) => event.date >= new Date().toISOString())
+
+        console.log("future Events", futureEvents)
+
     const loadEvents = 
-            loadedEvents().map((event) => {
+            futureEvents.map((event) => {
                 return (
                     <Nav.Item key={event.id}>
                         <LinkContainer to={`/events/${event.id}`}>

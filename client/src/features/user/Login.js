@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom"
 
 
 function Login () {
-    const {userInfo} = useSelector((state) => state.user)
     const events = useSelector((state) => state.events.entities)
     const dispatch = useDispatch()
     const navigate = useNavigate()

@@ -1,12 +1,18 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { eventAdded } from './eventsSlice'
+import { pageChange } from "../navigation/navigationSlice";
 
 function CreateEvent () {
     const dispatch = useDispatch()
     const {id} = useSelector((state) => state.user.userInfo)
+    const { page } = useSelector(state => state.navigation)
+
+    useEffect(() => {
+        dispatch(pageChange(null))
+        }, [dispatch])
 
 
     const [newEvent, setNewEvent] = useState({
@@ -64,7 +70,6 @@ function CreateEvent () {
                     state: "",
                     zip: ""
                 })
-            console.log(event)
             })
     }
 
@@ -73,7 +78,6 @@ function CreateEvent () {
     let date = new Date().toISOString().slice(0, 10)
 
 
-    console.log(newEvent)
 
     return(
 
