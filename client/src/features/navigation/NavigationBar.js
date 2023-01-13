@@ -8,8 +8,21 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 function NavigationBar() {
   const dispatch = useDispatch();
-
+  const { page } = useSelector((state) => state.navigation);
   const { userInfo } = useSelector((state) => state.user);
+
+  const loadedEvents = () => {
+    switch (page) {
+      case "attending":
+        return "Attending";
+      case "hosting":
+        return "Hosting";
+      case "all":
+        return "All events";
+      default:
+        return null;
+    }
+  };
 
   function handleLogoutClick() {
     fetch("/api/logout", {
@@ -77,6 +90,7 @@ function NavigationBar() {
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand>Event App</Navbar.Brand>
+        <Navbar.Text>{loadedEvents()}</Navbar.Text>
         <Nav className="d-flex" activeKey="/events">
           {componentsToShow}
         </Nav>
