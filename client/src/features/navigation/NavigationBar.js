@@ -29,6 +29,9 @@ function NavigationBar () {
         <>
             
             <NavDropdown menuVariant="dark" title="Events">
+                <LinkContainer style={{textDecoration: "none"}} to="/events">
+                    <NavDropdown.Item>All Events</NavDropdown.Item>
+                </LinkContainer>
                 <LinkContainer style={{textDecoration: "none"}} to="/events/attending">
                     <NavDropdown.Item>Attending</NavDropdown.Item>
                 </LinkContainer>

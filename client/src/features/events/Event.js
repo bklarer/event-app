@@ -19,8 +19,6 @@ function Event () {
     const findEvent = events.find((event) => event.id === parseInt(eventId))
     const navigate = useNavigate()
     const [isGoing, setIsGoing] = useState(false)
-    
-
 
     function deleteEvent() {
         fetch(`/api/events/${eventId}`, {

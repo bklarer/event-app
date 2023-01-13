@@ -2,23 +2,21 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { pageChange } from "../navigation/navigationSlice";
 
-function AttendingEvents() {
+function AllEvents() {
     const dispatch = useDispatch()
     const { page } = useSelector(state => state.navigation)
 
 
     useEffect(() => {
-        dispatch(pageChange("attending"))
+        dispatch(pageChange("all"))
         }, [dispatch])
 
 
-
-// Events needs to have a side bar, that will have a route
     return (
 
 
         <div>
-            <p>Events Attending</p>
+            <p>All Events</p>
         </div>
 
 
@@ -32,4 +30,4 @@ function AttendingEvents() {
 
 
 
-export default AttendingEvents
+export default AllEvents
