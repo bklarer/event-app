@@ -1,16 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom'; 
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
-import { fetchEvents } from './features/events/eventsSlice';
+import { fetchEvents } from "./features/events/eventsSlice";
 
-
-store.dispatch(fetchEvents())
-
+store.dispatch(fetchEvents());
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +18,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

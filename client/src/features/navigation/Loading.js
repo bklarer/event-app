@@ -1,21 +1,9 @@
-
-
-
-function Loading () {
-
-
-
-    return (
-
-        <div>
-            <h1>Loading...</h1>
-        </div>
-
-
-
-    )
-
-
+function Loading() {
+  return (
+    <div>
+      <h1>Loading...</h1>
+    </div>
+  );
 }
 
-export default Loading
+export default Loading;

@@ -1,52 +1,32 @@
-import { useEffect } from "react" 
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pageChange } from "../navigation/navigationSlice";
 import { futureEvents } from "./eventsSlice";
-import { useNavigate } from "react-router-dom"
-import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 function AllEvents() {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const events = useSelector(futureEvents)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const events = useSelector(futureEvents);
 
-    const firstEvent = events.length > 0 ? events[0] : null
+  const firstEvent = events.length > 0 ? events[0] : null;
 
-    const toNavigate = events.length > 0 ? `/events/${firstEvent.id}` : null
+  const toNavigate = events.length > 0 ? `/events/${firstEvent.id}` : null;
 
+  useEffect(() => {
+    dispatch(pageChange("all"));
+    navigate(toNavigate);
+  }, [dispatch, toNavigate, navigate]);
 
-
-    useEffect(() => {
-        dispatch(pageChange("all"))
-        navigate(toNavigate)
-        }, [dispatch, toNavigate, navigate])
-
-
-    const eventsError =
+  const eventsError = (
     <Alert variant="danger">
-        <Alert.Heading>
-            Oh snap! There aren't any events
-        </Alert.Heading>
-        <p>Create an event to start using the app</p>
+      <Alert.Heading>Oh snap! There aren't any events</Alert.Heading>
+      <p>Create an event to start using the app</p>
     </Alert>
+  );
 
-
-    return (
-
-
-        <div>
-            {events.length > 0 ? null : eventsError}
-        </div>
-
-
-
-    )
-
-
-
-
+  return <div>{events.length > 0 ? null : eventsError}</div>;
 }
 
-
-
-export default AllEvents
+export default AllEvents;
