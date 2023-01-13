@@ -35,6 +35,8 @@ function Event () {
     })
     }
     
+    const matchingTicket = currentUser.created_events.find(event => event.id === parseInt(eventId))
+
     const currentEvent = findEvent ? findEvent : defaultEvent
     
     const goingButton = isGoing ? "Don't Go" : "Go"
@@ -95,6 +97,7 @@ function Event () {
     const eventTime = parseInt(hour) > 12 ? `${hour - 12}:${minute} pm` : `${hour}:${minute}am`
 
 
+
     return (
 
             <Container className="justify-content-md-center">
@@ -109,10 +112,16 @@ function Event () {
                     <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
                     <h5>People Attending: {currentEvent.tickets.length}</h5>
                     <Button variant={goingButtonStyle} onClick={handleGoingClick} style={{"margin": "10px"}}>{goingButton}</Button>
-                    <Link to={`/events/${currentEvent.id}/edit`}>
-                        <Button variant="warning" style={{"margin": "10px"}}>Edit</Button>
-                    </Link>
-                    <Button variant="danger" onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
+                    
+
+                    {matchingTicket ?
+                    <>
+                        <Link to={`/events/${currentEvent.id}/edit`}>
+                            <Button variant="warning" style={{"margin": "10px"}}>Edit</Button>
+                        </Link>
+                        <Button variant="danger" onClick={deleteEvent} style={{"margin": "10px"}}>Delete</Button>
+                    </> 
+                    : null}
             </Container>
 
 
