@@ -76,9 +76,10 @@ function CreateEvent() {
   return (
     <div>
       <h1>Create New Event</h1>
+      <p>* required</p>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Event Title</Form.Label>
+          <Form.Label>Event Title*</Form.Label>
           <Form.Control
             type="text"
             placeholder="Event Title"
@@ -108,7 +109,7 @@ function CreateEvent() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Date</Form.Label>
+          <Form.Label>Date*</Form.Label>
           <Form.Control
             type="date"
             name="date"
@@ -118,7 +119,7 @@ function CreateEvent() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Time</Form.Label>
+          <Form.Label>Time*</Form.Label>
           <Form.Control
             type="time"
             name="time"
