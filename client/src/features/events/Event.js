@@ -40,9 +40,13 @@ function Event () {
     const currentEvent = findEvent ? findEvent : defaultEvent
     
     const goingButton = isGoing ? "Don't Go" : "Go"
-
-    const userTicket = currentEvent ? currentEvent.tickets.find(ticket => ticket.user_id === currentUser.id) : null
     
+    console.log("current Event", currentEvent)
+    
+   const userTicket = currentEvent.tickets ? currentEvent.tickets.find(ticket => ticket.user_id === currentUser.id) : null
+    
+ 
+
     useEffect(() =>{
         if(userTicket) {
             setIsGoing(true)
@@ -104,15 +108,17 @@ function Event () {
                 <Image width={360} className="fluid" src={"https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"} alt={"Event"}/>
 
                     <h1>{currentEvent.title}</h1>
+                    {currentEvent.tickets ? <>
                     <p>{"Date: " + eventDate}</p>
                     <p>{"Time: " + eventTime}</p>
                     <p>{currentEvent.description}</p>
                     <h4>Address</h4>
                     <p>{currentEvent.address}</p>
                     <p>{currentEvent.city + ", " + currentEvent.state + " " + currentEvent.zip}</p>
-                    <h5>People Attending: {currentEvent.tickets.length}</h5>
+                    <h5>People Attending: {currentEvent.tickets ? currentEvent.tickets.length : null}</h5>
                     <Button variant={goingButtonStyle} onClick={handleGoingClick} style={{"margin": "10px"}}>{goingButton}</Button>
-                    
+                    </>    
+                    : null}
 
                     {matchingTicket ?
                     <>
