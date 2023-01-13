@@ -17,8 +17,6 @@ function Login () {
 
     })
 
-    const firstEvent = events[0]
-
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -27,7 +25,7 @@ function Login () {
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(userLogin(login)).then(navigate(`/events/${firstEvent.id}`))
+        dispatch(userLogin(login)).then(navigate(`/events`))
     }
 
 

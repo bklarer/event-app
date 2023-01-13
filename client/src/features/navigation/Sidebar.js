@@ -1,35 +1,29 @@
 import Nav from "react-bootstrap/Nav";
 import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
+import { hostedEvents, eventsAttending } from "../user/userSlice";
+import { futureEvents } from "../events/eventsSlice"
 
 
 
 function Sidebar() {
-
-    const events = useSelector((state) => state.events.entities)
-    const eventStatus = useSelector((state) => state.events.status)
     const { page } = useSelector((state) => state.navigation)
-    const user = useSelector((state) => state.user.userInfo)
-
-
-    const hostedEvents = user.created_events
-    const eventsAttending = user.events
+    const events = useSelector(futureEvents)
+    const eventsHosted = useSelector(hostedEvents)
+    const attendingEvents = useSelector(eventsAttending)
 
     const loadedEvents = () => {
         switch(page) {
             case "attending":
-                return eventsAttending
+                return attendingEvents
             case "hosting":
-                return hostedEvents
+                return eventsHosted
         default: return events
         }}
 
-        const futureEvents = loadedEvents().filter((event) => event.date >= new Date().toISOString())
-
-        console.log("future Events", futureEvents)
 
     const loadEvents = 
-            futureEvents.map((event) => {
+            loadedEvents().map((event) => {
                 return (
                     <Nav.Item key={event.id}>
                         <LinkContainer to={`/events/${event.id}`}>

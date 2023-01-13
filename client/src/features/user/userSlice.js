@@ -62,8 +62,10 @@ const userSlice = createSlice({
 
 })
 
-
-
+export const hostedEvents = state => state.user.userInfo.created_events
+    .filter((event) => event.date >= new Date().toISOString())
+export const eventsAttending = state => state.user.userInfo.events
+    .filter((event) => event.date >= new Date().toISOString())
 export const {logout} = userSlice.actions
 export default userSlice.reducer
 

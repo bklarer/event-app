@@ -76,6 +76,8 @@ export const selectAllEvents = state => state.events.entities
 export const selectEventById = (state, eventId) =>
     state.events.entities.find(event => event.id === eventId)
 
+export const futureEvents = state => state.events.entities
+    .filter((event) => event.date >= new Date().toISOString())
 
 export const { eventAdded, eventUpdated, eventRemoved, ticketAdded, ticketRemoved } = eventsSlice.actions;
 export default eventsSlice.reducer
