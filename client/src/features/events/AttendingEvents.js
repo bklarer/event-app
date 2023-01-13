@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { pageChange } from "../navigation/navigationSlice";
 import { eventsAttending } from "../user/userSlice";
 import { useNavigate } from "react-router-dom"
+import Alert from 'react-bootstrap/Alert';
+
 
 function AttendingEvents() {
     const dispatch = useDispatch()
@@ -23,16 +25,23 @@ function AttendingEvents() {
         }, [dispatch, toNavigate, navigate])
 
 
+    const attendingError =
+        <Alert variant="danger">
+            <Alert.Heading>
+                Oh snap! You aren't attending any events!
+            </Alert.Heading>
+            <p>Go to the events page and choose an event to attend</p>
+        </Alert>
 
 
 
 
-// Events needs to have a side bar, that will have a route
+
     return (
 
 
         <div>
-            <p>Events Attending</p>
+            {events.length > 0 ? null : attendingError}
         </div>
 
 
