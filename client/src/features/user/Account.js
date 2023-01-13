@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { logout } from "./userSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { pageChange } from "../navigation/navigationSlice";
 
 function Account() {
   const { first_name, last_name, username } = useSelector(
@@ -9,6 +11,10 @@ function Account() {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(pageChange("account"));
+  }, [dispatch]);
 
   const handleDeleteClick = () => {
     fetch("/api/me", {

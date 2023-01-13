@@ -5,7 +5,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../user/userSlice";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { pageChange } from "../navigation/navigationSlice";
 
 function NavigationBar() {
   const dispatch = useDispatch();
@@ -20,6 +19,12 @@ function NavigationBar() {
         return "Hosting";
       case "all":
         return "All events";
+      case "create":
+        return "Create Event";
+      case "account":
+        return "Account Info";
+      case "app":
+        return "Event-App";
       default:
         return null;
     }
@@ -31,7 +36,6 @@ function NavigationBar() {
     }).then((r) => {
       if (r.ok) {
         dispatch(logout());
-        dispatch(pageChange(null))
       }
     });
   }

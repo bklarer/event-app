@@ -1,9 +1,10 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { userLogin } from "./userActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { pageChange } from "../navigation/navigationSlice";
 
 function Login() {
   const dispatch = useDispatch();
@@ -12,6 +13,10 @@ function Login() {
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    dispatch(pageChange("app"));
+  }, [dispatch]);
 
   function handleChange(e) {
     const { name, value } = e.target;

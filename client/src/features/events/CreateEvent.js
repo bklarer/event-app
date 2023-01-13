@@ -11,7 +11,7 @@ function CreateEvent() {
   const { id } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
-    dispatch(pageChange(null));
+    dispatch(pageChange("create"));
   }, [dispatch]);
 
   const [newEvent, setNewEvent] = useState({
