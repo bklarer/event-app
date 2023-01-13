@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { eventUpdated, selectEventById } from "./eventsSlice";
+import { userUpdatedEvent } from "../user/userSlice";
 
 function EditEvent() {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ function EditEvent() {
       .then((resp) => resp.json())
       .then((event) => {
         dispatch(eventUpdated(event));
+        dispatch(userUpdatedEvent(event));
         navigate(`/events/${eventId}`);
       });
   }

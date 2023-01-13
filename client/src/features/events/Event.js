@@ -5,6 +5,11 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { eventRemoved, ticketAdded, ticketRemoved } from "./eventsSlice";
 import { useEffect, useState } from "react";
+import {
+  userRemovedEvent,
+  userAddedTicket,
+  userRemovedTicket,
+} from "../user/userSlice";
 
 function Event() {
   const { eventId } = useParams();
@@ -30,6 +35,7 @@ function Event() {
     }).then(() => {
       navigate(`/events/${events[0].id}`);
       dispatch(eventRemoved(parseInt(eventId)));
+      dispatch(userRemovedEvent(parseInt(eventId)));
     });
   }
 
@@ -68,6 +74,7 @@ function Event() {
       .then((response) => response.json())
       .then((ticket) => {
         dispatch(ticketAdded(ticket));
+        dispatch(userAddedTicket(currentEvent));
       });
   };
 
@@ -81,6 +88,7 @@ function Event() {
       dispatch(
         ticketRemoved({ eventId: currentEvent.id, ticketId: userTicket.id })
       );
+      dispatch(userRemovedTicket(currentEvent.id));
     });
   };
 

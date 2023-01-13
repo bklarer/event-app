@@ -18,6 +18,39 @@ const userSlice = createSlice({
       state.userInfo = null;
       state.error = null;
     },
+    userCreatedEvent: (state, { payload }) => {
+      state.userInfo.created_events.push(payload);
+    },
+    userRemovedEvent: (state, { payload }) => {
+      const index = state.userInfo.created_events.findIndex(
+        (event) => event.id === payload
+      );
+      state.userInfo.created_events.splice(index, 1);
+    },
+    userUpdatedEvent: (state, { payload }) => {
+      const existingEvent = state.userInfo.created_events.find(
+        (event) => event.id === payload.id
+      );
+      if (existingEvent) {
+        existingEvent.title = payload.title;
+        existingEvent.description = payload.description;
+        existingEvent.img_url = payload.img_url;
+        existingEvent.date = payload.date;
+        existingEvent.address = payload.address;
+        existingEvent.city = payload.city;
+        existingEvent.state = payload.state;
+        existingEvent.zip = payload.zip;
+      }
+    },
+    userAddedTicket: (state, { payload }) => {
+      state.userInfo.events.push(payload);
+    },
+    userRemovedTicket: (state, { payload }) => {
+      const index = state.userInfo.events.findIndex(
+        (event) => event.id === payload
+      );
+      state.userInfo.events.splice(index, 1);
+    },
   },
   extraReducers: {
     [userLogin.pending]: (state) => {
@@ -68,5 +101,12 @@ export const eventsAttending = (state) =>
   state.user.userInfo.events.filter(
     (event) => event.date >= new Date().toISOString()
   );
-export const { logout } = userSlice.actions;
+export const {
+  logout,
+  userCreatedEvent,
+  userRemovedEvent,
+  userUpdatedEvent,
+  userAddedTicket,
+  userRemovedTicket,
+} = userSlice.actions;
 export default userSlice.reducer;

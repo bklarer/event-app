@@ -17,6 +17,7 @@ function Layout() {
 
     // Need to look at refactoring Attending, Hosting, and AllEvents components
     // Don't know if I like all of the routes here
+    // Decide on a style for redux, need to make code consistent
 
   const sidebar = (
     <Col md={3}>

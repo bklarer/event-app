@@ -42,7 +42,6 @@ export const checkLogin = createAsyncThunk(
     await fetch("/api/me").then((response) => {
       if (response.ok) {
         return response.json().then((user) => {
-          console.log(user);
           return user;
         });
       }

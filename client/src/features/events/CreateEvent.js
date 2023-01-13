@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { eventAdded } from "./eventsSlice";
 import { pageChange } from "../navigation/navigationSlice";
+import { userCreatedEvent } from "../user/userSlice";
 
 function CreateEvent() {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function CreateEvent() {
       .then((resp) => resp.json())
       .then((event) => {
         dispatch(eventAdded(event));
+        dispatch(userCreatedEvent(event))
         setNewEvent({
           title: "",
           description: "",
