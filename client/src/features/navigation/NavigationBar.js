@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../user/userSlice";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { pageChange } from "../navigation/navigationSlice";
 
 function NavigationBar() {
   const dispatch = useDispatch();
@@ -29,8 +30,8 @@ function NavigationBar() {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        console.log("logout");
         dispatch(logout());
+        dispatch(pageChange(null))
       }
     });
   }
@@ -89,8 +90,7 @@ function NavigationBar() {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Event App</Navbar.Brand>
-        <Navbar.Text>{loadedEvents()}</Navbar.Text>
+        <Navbar.Brand>{loadedEvents()}</Navbar.Brand>
         <Nav className="d-flex" activeKey="/events">
           {componentsToShow}
         </Nav>
