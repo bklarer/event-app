@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
     // Figure out what options I want for error handling
-    const { userInfo, error, success } = useSelector(
+    const {error} = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();

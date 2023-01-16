@@ -4,9 +4,7 @@ import { registerUser, userLogin, checkLogin } from "./userActions";
 const initialState = {
   loading: false,
   userInfo: null,
-  userToken: null,
   error: null,
-  success: false,
 };
 
 const userSlice = createSlice({
@@ -60,6 +58,7 @@ const userSlice = createSlice({
     [userLogin.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
+      state.error = null
     },
     [userLogin.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -71,8 +70,8 @@ const userSlice = createSlice({
     },
     [registerUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.success = true;
       state.userInfo = payload;
+      state.error = null
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.loading = false;
