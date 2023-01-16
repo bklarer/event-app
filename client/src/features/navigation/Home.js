@@ -6,8 +6,6 @@ function Home() {
 
     const { userInfo } = useSelector((state) => state.user);
     const events = useSelector((state) => state.entities)
-    console.log("userInfo", userInfo);
-    console.log("events", events)
 
   return <div>{!userInfo ? <Login /> : null}</div>;
 }

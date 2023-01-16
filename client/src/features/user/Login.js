@@ -30,9 +30,6 @@ function Login() {
     dispatch(userLogin(login)).then(userInfo ? navigate(`/events`) : null);
   }
 
-  console.log("error login", error)
-
-
   return (
     <div>
       <h1>Login</h1>

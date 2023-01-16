@@ -41,9 +41,9 @@ function Event() {
 
   //Ticket and going button
 
-  const matchingTicket = currentUser.created_events.find(
+  const matchingTicket = currentUser ? currentUser.created_events.find(
     (event) => event.id === parseInt(eventId)
-  );
+  ) : null
 
   const currentEvent = findEvent ? findEvent : defaultEvent;
 
