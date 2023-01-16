@@ -11,8 +11,6 @@ function AllEvents() {
   const events = useSelector(futureEvents);
   const currentUser = useSelector((state) => state.user.userInfo)
 
-    console.log("events", events)
-
   const firstEvent = events.length > 0 && currentUser ? events[0] : null;
 
   const toNavigate = events.length > 0 && currentUser ? `/events/${firstEvent.id}` : null;

@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./styles/App.css";
 import NavagationBar from "./features/navigation/NavigationBar";
 import Layout from "./features/navigation/Layout";
 import Loading from "./features/navigation/Loading";

@@ -1,5 +1,6 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from 'react-bootstrap/Alert';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./userActions";
@@ -26,6 +27,7 @@ function Signup() {
     setSignup((signup) => ({ ...signup, [name]: value }));
   }
 
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(registerUser(signup));
@@ -36,8 +38,10 @@ function Signup() {
       password: "",
       confirm_password: "",
     });
-    navigate("/");
-  }
+    if(!error) {
+        return null
+    } else navigate("/")
+}
 
   return (
     <div>
@@ -97,6 +101,9 @@ function Signup() {
           Submit
         </Button>
       </Form>
+      {error ? error.map(err => {
+        return <Alert variant="danger" key={err}>{err}</Alert>
+    }) : null}
     </div>
   );
 }

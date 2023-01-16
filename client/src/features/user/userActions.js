@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 // Testing to see if I like separating out actions from the slice
 export const registerUser = createAsyncThunk(
   `user/signup`,
-  async (data) =>
+  async (data, {rejectWithValue}) =>
     await fetch("/api/signup", {
       method: "POST",
       headers: {
@@ -13,11 +13,20 @@ export const registerUser = createAsyncThunk(
       },
       body: JSON.stringify(data),
     })
-      .then((resp) => resp.json())
-      .then((user) => {
-        return user;
-      })
-);
+    .then((response) => {
+        if(response.ok) {
+          return response.json().then((user) => {
+              return user
+          }
+          )
+        } else {
+          return response.json().then((error) => {
+             return rejectWithValue(error.errors)
+          })
+        }
+      }
+      )
+  )
 
 export const userLogin = createAsyncThunk(
   `user/login`,
@@ -43,7 +52,6 @@ export const userLogin = createAsyncThunk(
       }
     }
     )
-
 )
 
 export const checkLogin = createAsyncThunk(
