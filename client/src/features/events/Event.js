@@ -26,6 +26,10 @@ function Event() {
   const navigate = useNavigate();
   const [isGoing, setIsGoing] = useState(false);
 
+  const addDefaultSource = (ev) => {
+    ev.target.src = "https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"
+}
+
   function deleteEvent() {
     fetch(`/api/events/${eventId}`, {
       method: "DELETE",
@@ -117,9 +121,8 @@ function Event() {
       <Image
         width={360}
         className="fluid"
-        src={
-          "https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"
-        }
+        src={currentEvent.img_url}
+        onError={addDefaultSource}
         alt={"Event"}
       />
 
