@@ -6,8 +6,12 @@ class Api::EventsController < ApplicationController
     end
 
     def create
-        event = Event.create!(event_params)
-        render json: event, status: :created
+        if @current_user[:id] == params[:creator_id]
+            event = Event.create!(event_params)
+            render json: event, status: :created
+        else
+            render json: {errors: ["User not authorized to create event"]}, status: :unauthorized
+        end
     end
 
     def show
@@ -16,15 +20,23 @@ class Api::EventsController < ApplicationController
     end
 
     def update
-        event = find_event
-        event.update(event_params)
-        render json: event
+            event = find_event
+        if @current_user[:id] == event[:creator_id]
+            event.update!(event_params)
+            render json: event
+        else
+            render json: {errors: ["User is not the creator of the event"]}, status: :unauthorized
+        end
     end
 
     def destroy
         event = find_event
-        event.destroy
-        head :no_content
+        if @current_user[:id] == event[:creator_id]
+            event.destroy
+            head :no_content
+        else
+            render json: {errors: ["User is not the creator of the event"]}, status: :unauthorized
+        end
     end
 
 
@@ -39,7 +51,7 @@ class Api::EventsController < ApplicationController
             :address, 
             :city, 
             :state, 
-            :zip, 
+            :zip,
             :creator_id
         )
     end

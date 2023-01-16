@@ -38,7 +38,7 @@ function CreateEvent() {
     city: newEvent.city,
     state: newEvent.state,
     zip: newEvent.zip,
-    creator_id: id,
+    creator_id: id
   };
 
   function handleChange(e) {
@@ -81,10 +81,9 @@ function CreateEvent() {
       { currentUser ? (
       <>  
       <h1>Create New Event</h1>
-      <p>* required</p>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Event Title*</Form.Label>
+          <Form.Label>Event Title</Form.Label>
           <Form.Control
             required
             type="text"
@@ -117,7 +116,7 @@ function CreateEvent() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Date*</Form.Label>
+          <Form.Label>Date</Form.Label>
           <Form.Control
             required
             type="date"
@@ -128,7 +127,7 @@ function CreateEvent() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Time*</Form.Label>
+          <Form.Label>Time</Form.Label>
           <Form.Control
             required
             type="time"
