@@ -94,6 +94,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Event Title</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Event Title"
             name="title"
@@ -104,6 +105,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Event Description</Form.Label>
           <Form.Control
+            required
             as="textarea"
             placeholder="Description"
             name="description"
@@ -114,6 +116,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Image URL</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Image URL"
             name="img_url"
@@ -124,6 +127,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Date</Form.Label>
           <Form.Control
+            required
             type="date"
             name="date"
             onChange={handleChange}
@@ -134,6 +138,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Time</Form.Label>
           <Form.Control
+            required
             type="time"
             name="time"
             onChange={handleChange}
@@ -143,6 +148,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Address</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Address"
             name="address"
@@ -153,6 +159,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>City</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="City"
             name="city"
@@ -163,6 +170,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>State</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="State"
             name="state"
@@ -173,6 +181,7 @@ function EditEvent() {
         <Form.Group className="mb-3">
           <Form.Label>Zip</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Zip"
             name="zip"
