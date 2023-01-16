@@ -4,11 +4,10 @@ import { logout } from "./userSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { pageChange } from "../navigation/navigationSlice";
+import Alert from 'react-bootstrap/Alert';
 
 function Account() {
-  const { first_name, last_name, username } = useSelector(
-    (state) => state.user.userInfo
-  );
+  const currentUser = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,17 +27,27 @@ function Account() {
     });
   };
 
+
+
+
   return (
     <div>
+      
+      
+    {currentUser ? (  
+      <>
       <h4>User Info</h4>
       <h6>Username</h6>
-      <p>{`${username}`}</p>
+      <p>{`${currentUser.username}`}</p>
       <h6>Name</h6>
-      <p>{`${first_name} ${last_name}`}</p>
+      <p>{`${currentUser.first_name} ${currentUser.last_name}`}</p>
       <Button onClick={handleDeleteClick} variant="danger">
         Delete
       </Button>
-    </div>
+      </>
+        ) : <Alert variant="danger">"No User Found, please login"</Alert>}
+        </div>
+
   );
 }
 

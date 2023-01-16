@@ -11,6 +11,7 @@ import Account from "../user/Account";
 import HostedEvents from "../events/HostedEvents";
 import AttendingEvents from "../events/AttendingEvents";
 import AllEvents from "../events/AllEvents";
+import PageNotFound from "./PageNotFound";
 
 function Layout() {
   const { userInfo } = useSelector((state) => state.user);
@@ -48,6 +49,7 @@ function Layout() {
             <Route exact path="/events/:eventId" element={<Event />} />
             <Route exact path="/events/:eventId/edit" element={<EditEvent />} />
             <Route exact path="/account" element={<Account />} />
+            <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </Col>
       </Row>

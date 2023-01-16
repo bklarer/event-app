@@ -5,14 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { eventAdded } from "./eventsSlice";
 import { pageChange } from "../navigation/navigationSlice";
 import { userCreatedEvent } from "../user/userSlice";
+import Alert from 'react-bootstrap/Alert';
 
 function CreateEvent() {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user.userInfo);
+  const currentUser = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
     dispatch(pageChange("create"));
   }, [dispatch]);
+
+  const id = currentUser ? currentUser.id : null
 
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -75,6 +78,8 @@ function CreateEvent() {
 
   return (
     <div>
+      { currentUser ? (
+      <>  
       <h1>Create New Event</h1>
       <p>* required</p>
       <Form onSubmit={handleSubmit}>
@@ -171,6 +176,8 @@ function CreateEvent() {
           Submit
         </Button>
       </Form>
+      </>
+        ): <Alert variant="danger">"Login to create an event"</Alert>}
     </div>
   );
 }

@@ -5,11 +5,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { eventUpdated, selectEventById } from "./eventsSlice";
 import { userUpdatedEvent } from "../user/userSlice";
+import Alert from 'react-bootstrap/Alert';
 
 function EditEvent() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { eventId } = useParams();
+  const currentUser = useSelector((state) => state.user.userInfo);
 
   const [updateEvent, setUpdateEvent] = useState({
     title: "",
@@ -35,12 +37,15 @@ function EditEvent() {
     address: updateEvent.address,
     city: updateEvent.city,
     state: updateEvent.state,
-    zip: updateEvent.zip,
-    creator_id: selectedEvent.creator_id,
+    zip: updateEvent.zip
   };
+
+
+
 
   useEffect(
     () =>
+    selectedEvent ? (
       setUpdateEvent({
         title: selectedEvent.title,
         description: selectedEvent.description,
@@ -51,7 +56,7 @@ function EditEvent() {
         city: selectedEvent.city,
         state: selectedEvent.state,
         zip: selectedEvent.zip,
-      }),
+      })) : null,
     [selectedEvent]
   );
 
@@ -82,6 +87,8 @@ function EditEvent() {
 
   return (
     <div>
+      { currentUser ? (
+      <>
       <h1>Edit Event</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
@@ -177,6 +184,8 @@ function EditEvent() {
           Submit
         </Button>
       </Form>
+      </>
+        ) : <Alert variant="danger">Login to edit</Alert> }
     </div>
   );
 }
