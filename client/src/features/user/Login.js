@@ -1,14 +1,16 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react";
 import { userLogin } from "./userActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { pageChange } from "../navigation/navigationSlice";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { userInfo, error } = useSelector((state) => state.user);
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -25,8 +27,11 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(userLogin(login)).then(navigate(`/events`));
+    dispatch(userLogin(login)).then(userInfo ? navigate(`/events`) : null);
   }
+
+  console.log("error login", error)
+
 
   return (
     <div>
@@ -56,6 +61,9 @@ function Login() {
           Submit
         </Button>
       </Form>
+    {error ? error.map(err => {
+        return <Alert variant="danger" key={err}>{err}</Alert>
+    }) : null}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { registerUser } from "./userActions";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
-    // Figure out if you want all of these options for error handling
+    // Figure out what options I want for error handling
     const { userInfo, error, success } = useSelector(
     (state) => state.user
   );

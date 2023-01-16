@@ -21,7 +21,7 @@ export const registerUser = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
   `user/login`,
-  async (data) =>
+  async (data, {rejectWithValue}) =>
     await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -30,11 +30,21 @@ export const userLogin = createAsyncThunk(
       },
       body: JSON.stringify(data),
     })
-      .then((resp) => resp.json())
-      .then((user) => {
-        return user;
-      })
-);
+      .then((response) => {
+      if(response.ok) {
+        return response.json().then((user) => {
+            return user
+        }
+        )
+      } else {
+        return response.json().then((error) => {
+           return rejectWithValue(error.errors)
+        })
+      }
+    }
+    )
+
+)
 
 export const checkLogin = createAsyncThunk(
   `user/login`,
