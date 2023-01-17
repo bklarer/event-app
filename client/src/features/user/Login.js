@@ -4,13 +4,11 @@ import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react";
 import { userLogin } from "./userActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { pageChange } from "../navigation/navigationSlice";
 
 function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { userInfo, error } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -27,8 +25,7 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(userLogin(login)).then(userInfo ? navigate(`/events`) : null);
-  }
+    dispatch(userLogin(login))}
 
   return (
     <div>

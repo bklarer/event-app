@@ -5,11 +5,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../user/userSlice";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useNavigate } from "react-router-dom";
 
 function NavigationBar() {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.navigation);
   const { userInfo } = useSelector((state) => state.user);
+  const navigate = useNavigate()
 
   const loadedEvents = () => {
     switch (page) {
@@ -36,6 +38,7 @@ function NavigationBar() {
     }).then((r) => {
       if (r.ok) {
         dispatch(logout());
+        navigate("/")
       }
     });
   }
