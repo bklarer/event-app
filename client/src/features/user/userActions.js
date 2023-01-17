@@ -55,7 +55,7 @@ export const userLogin = createAsyncThunk(
 )
 
 export const checkLogin = createAsyncThunk(
-  `user/login`,
+  `user/check`,
   async () =>
     await fetch("/api/me").then((response) => {
       if (response.ok) {

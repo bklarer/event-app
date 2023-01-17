@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin, checkLogin } from "./userActions";
 
+
 const initialState = {
   loading: false,
   userInfo: null,
@@ -50,45 +51,46 @@ const userSlice = createSlice({
       state.userInfo.events.splice(index, 1);
     },
   },
-  extraReducers: {
-    [userLogin.pending]: (state) => {
+  extraReducers: builder => {
+    builder
+    .addCase(userLogin.pending, (state) => {
       state.loading = true;
       state.error = null;
-    },
-    [userLogin.fulfilled]: (state, { payload }) => {
+    })
+    .addCase(userLogin.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
       state.error = null
-    },
-    [userLogin.rejected]: (state, { payload }) => {
+    })
+    .addCase(userLogin.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-    },
-    [registerUser.pending]: (state) => {
+    })
+    .addCase(registerUser.pending, (state) => {
       state.loading = true;
       state.error = null;
-    },
-    [registerUser.fulfilled]: (state, { payload }) => {
+    })
+    .addCase(registerUser.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
       state.error = null
-    },
-    [registerUser.rejected]: (state, { payload }) => {
+    })
+    .addCase(registerUser.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-    },
-    [checkLogin.pending]: (state) => {
+    })
+    .addCase(checkLogin.pending, (state) => {
       state.loading = true;
       state.error = null;
-    },
-    [checkLogin.fulfilled]: (state, { payload }) => {
+    })
+    .addCase(checkLogin.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
-    },
-    [checkLogin.rejected]: (state, { payload }) => {
+    })
+    .addCase(checkLogin.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-    },
+    })
   },
 });
 

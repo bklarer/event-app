@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { eventRemoved, ticketAdded, ticketRemoved } from "./eventsSlice";
@@ -76,15 +77,14 @@ function Event() {
         user_id: currentUser.id,
         event_id: currentEvent.id,
       }),
-    })
-      .then((response) => {
-        if(response.ok) {
+    }).then((response) => {
+      if (response.ok) {
         response.json().then((ticket) => {
-        dispatch(ticketAdded(ticket));
-        dispatch(userAddedTicket(currentEvent));
-      })}
-    else response.json().then((err) => setErrors(err.errors))
-    })
+          dispatch(ticketAdded(ticket));
+          dispatch(userAddedTicket(currentEvent));
+        });
+      } else response.json().then((err) => setErrors(err.errors));
+    });
   };
 
   const deleteTicketFetch = () => {
@@ -176,6 +176,11 @@ function Event() {
           </Button>
         </>
       ) : null}
+      {errors.map((err) => (
+        <Alert variant="danger" key={err}>
+          {err}
+        </Alert>
+      ))}
     </Container>
   );
 }

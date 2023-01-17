@@ -59,18 +59,19 @@ const eventsSlice = createSlice({
       }
     },
   },
-  extraReducers: {
-    [fetchEvents.pending](state) {
+  extraReducers: builder => {
+    builder
+    .addCase(fetchEvents.pending, (state) => {
       state.loading = true;
-    },
-    [fetchEvents.fulfilled](state, action) {
+    })
+    .addCase(fetchEvents.fulfilled, (state, action) => {
       state.entities = action.payload;
       state.loading = false;
-    },
-    [fetchEvents.rejected](state, action) {
+    })
+    .addCase(fetchEvents.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
-    },
+    })
   },
 });
 
