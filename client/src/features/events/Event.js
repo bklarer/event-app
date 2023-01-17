@@ -56,7 +56,7 @@ function Event() {
 
   const goingButton = isGoing ? "Don't Go" : "Go";
 
-  const userTicket = currentEvent.tickets
+  const userTicket = currentUser 
     ? currentEvent.tickets.find((ticket) => ticket.user_id === currentUser.id)
     : null;
 
