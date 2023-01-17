@@ -25,10 +25,12 @@ function Event() {
   const findEvent = events.find((event) => event.id === parseInt(eventId));
   const navigate = useNavigate();
   const [isGoing, setIsGoing] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const addDefaultSource = (ev) => {
-    ev.target.src = "https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"
-}
+    ev.target.src =
+      "https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg";
+  };
 
   function deleteEvent() {
     fetch(`/api/events/${eventId}`, {
@@ -45,9 +47,9 @@ function Event() {
 
   //Ticket and going button
 
-  const matchingTicket = currentUser ? currentUser.created_events.find(
-    (event) => event.id === parseInt(eventId)
-  ) : null
+  const matchingTicket = currentUser
+    ? currentUser.created_events.find((event) => event.id === parseInt(eventId))
+    : null;
 
   const currentEvent = findEvent ? findEvent : defaultEvent;
 
@@ -75,11 +77,14 @@ function Event() {
         event_id: currentEvent.id,
       }),
     })
-      .then((response) => response.json())
-      .then((ticket) => {
+      .then((response) => {
+        if(response.ok) {
+        response.json().then((ticket) => {
         dispatch(ticketAdded(ticket));
         dispatch(userAddedTicket(currentEvent));
-      });
+      })}
+    else response.json().then((err) => setErrors(err.errors))
+    })
   };
 
   const deleteTicketFetch = () => {
