@@ -1,7 +1,7 @@
 import NavagationBar from "./features/navigation/NavigationBar";
 import Loading from "./features/navigation/Loading";
 import { useSelector, useDispatch } from "react-redux";
-import { checkLogin } from "./features/user/userActions";
+import { checkLogin } from "./features/user/userSlice";
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./features/navigation/Sidebar";

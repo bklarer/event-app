@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { useState, useEffect } from "react";
-import { userLogin } from "./userActions";
+import { userLogin } from "./userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { pageChange } from "../navigation/navigationSlice";
 

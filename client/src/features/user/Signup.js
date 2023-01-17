@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "./userActions";
+import { registerUser } from "./userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
