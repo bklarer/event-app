@@ -11,7 +11,7 @@ function NavigationBar() {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.navigation);
   const { userInfo } = useSelector((state) => state.user);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const loadedEvents = () => {
     switch (page) {
@@ -38,7 +38,7 @@ function NavigationBar() {
     }).then((r) => {
       if (r.ok) {
         dispatch(logout());
-        navigate("/")
+        navigate("/");
       }
     });
   }

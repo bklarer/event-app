@@ -1,16 +1,14 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "./userActions";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
-    // Figure out what options I want for error handling
-    const {error} = useSelector(
-    (state) => state.user
-  );
+  // Figure out what options I want for error handling
+  const { error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,7 +25,6 @@ function Signup() {
     setSignup((signup) => ({ ...signup, [name]: value }));
   }
 
-
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(registerUser(signup));
@@ -38,10 +35,10 @@ function Signup() {
       password: "",
       confirm_password: "",
     });
-    if(!error) {
-        return null
-    } else navigate("/")
-}
+    if (!error) {
+      return null;
+    } else navigate("/");
+  }
 
   return (
     <div>
@@ -101,9 +98,15 @@ function Signup() {
           Submit
         </Button>
       </Form>
-      {error ? error.map(err => {
-        return <Alert variant="danger" key={err}>{err}</Alert>
-    }) : null}
+      {error
+        ? error.map((err) => {
+            return (
+              <Alert variant="danger" key={err}>
+                {err}
+              </Alert>
+            );
+          })
+        : null}
     </div>
   );
 }

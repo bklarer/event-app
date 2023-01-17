@@ -12,7 +12,7 @@ const eventsSlice = createSlice({
     entities: [],
     status: null,
     loading: false,
-    error: null
+    error: null,
   },
   reducers: {
     eventAdded(state, action) {
@@ -59,19 +59,19 @@ const eventsSlice = createSlice({
       }
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-    .addCase(fetchEvents.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(fetchEvents.fulfilled, (state, action) => {
-      state.entities = action.payload;
-      state.loading = false;
-    })
-    .addCase(fetchEvents.rejected, (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-    })
+      .addCase(fetchEvents.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchEvents.fulfilled, (state, action) => {
+        state.entities = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchEvents.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      });
   },
 });
 

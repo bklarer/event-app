@@ -9,11 +9,12 @@ function AllEvents() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const events = useSelector(futureEvents);
-  const currentUser = useSelector((state) => state.user.userInfo)
+  const currentUser = useSelector((state) => state.user.userInfo);
 
   const firstEvent = events.length > 0 && currentUser ? events[0] : null;
 
-  const toNavigate = events.length > 0 && currentUser ? `/events/${firstEvent.id}` : null;
+  const toNavigate =
+    events.length > 0 && currentUser ? `/events/${firstEvent.id}` : null;
 
   useEffect(() => {
     dispatch(pageChange("all"));

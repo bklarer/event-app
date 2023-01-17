@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 // Testing to see if I like separating out actions from the slice
 export const registerUser = createAsyncThunk(
   `user/signup`,
-  async (data, {rejectWithValue}) =>
+  async (data, { rejectWithValue }) =>
     await fetch("/api/signup", {
       method: "POST",
       headers: {
@@ -12,25 +11,22 @@ export const registerUser = createAsyncThunk(
         Accept: "application/json",
       },
       body: JSON.stringify(data),
-    })
-    .then((response) => {
-        if(response.ok) {
-          return response.json().then((user) => {
-              return user
-          }
-          )
-        } else {
-          return response.json().then((error) => {
-             return rejectWithValue(error.errors)
-          })
-        }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json().then((user) => {
+          return user;
+        });
+      } else {
+        return response.json().then((error) => {
+          return rejectWithValue(error.errors);
+        });
       }
-      )
-  )
+    })
+);
 
 export const userLogin = createAsyncThunk(
   `user/login`,
-  async (data, {rejectWithValue}) =>
+  async (data, { rejectWithValue }) =>
     await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -38,21 +34,18 @@ export const userLogin = createAsyncThunk(
         Accept: "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((response) => {
-      if(response.ok) {
+    }).then((response) => {
+      if (response.ok) {
         return response.json().then((user) => {
-            return user
-        }
-        )
+          return user;
+        });
       } else {
         return response.json().then((error) => {
-           return rejectWithValue(error.errors)
-        })
+          return rejectWithValue(error.errors);
+        });
       }
-    }
-    )
-)
+    })
+);
 
 export const checkLogin = createAsyncThunk(
   `user/check`,

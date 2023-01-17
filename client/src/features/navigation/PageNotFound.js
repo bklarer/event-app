@@ -1,25 +1,11 @@
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 
-
-function PageNotFound () {
-
-
-
-
-
-    return(
-
-
-        <div>
-            <Alert variant="danger">404 Page not found</Alert>
-        </div>
-
-
-
-    )
-
-
+function PageNotFound() {
+  return (
+    <div>
+      <Alert variant="danger">404 Page not found</Alert>
+    </div>
+  );
 }
 
-
-export default PageNotFound
+export default PageNotFound;

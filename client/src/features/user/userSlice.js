@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin, checkLogin } from "./userActions";
 
-
 const initialState = {
   loading: false,
   userInfo: null,
@@ -51,46 +50,46 @@ const userSlice = createSlice({
       state.userInfo.events.splice(index, 1);
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-    .addCase(userLogin.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(userLogin.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.userInfo = payload;
-      state.error = null
-    })
-    .addCase(userLogin.rejected, (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
-    })
-    .addCase(registerUser.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(registerUser.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.userInfo = payload;
-      state.error = null
-    })
-    .addCase(registerUser.rejected, (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
-    })
-    .addCase(checkLogin.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(checkLogin.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.userInfo = payload;
-    })
-    .addCase(checkLogin.rejected, (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
-    })
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+        state.error = null;
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+        state.error = null;
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(checkLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(checkLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+      })
+      .addCase(checkLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      });
   },
 });
 

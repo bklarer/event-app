@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 import { useState, useEffect } from "react";
 import { userLogin } from "./userActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +25,8 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(userLogin(login))}
+    dispatch(userLogin(login));
+  }
 
   return (
     <div>
@@ -55,9 +56,15 @@ function Login() {
           Submit
         </Button>
       </Form>
-    {error ? error.map(err => {
-        return <Alert variant="danger" key={err}>{err}</Alert>
-    }) : null}
+      {error
+        ? error.map((err) => {
+            return (
+              <Alert variant="danger" key={err}>
+                {err}
+              </Alert>
+            );
+          })
+        : null}
     </div>
   );
 }
