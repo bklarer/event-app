@@ -20,7 +20,6 @@ function Account() {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        console.log("deleted");
         navigate("/");
         dispatch(logout());
       }

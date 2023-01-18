@@ -55,7 +55,7 @@ export const registerUser = createAsyncThunk(
           return response.json().then((user) => {
             return user;
           });
-        }
+        } 
       })
   );
 

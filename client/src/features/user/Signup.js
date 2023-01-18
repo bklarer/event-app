@@ -7,8 +7,7 @@ import { registerUser } from "./userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
-  // Figure out what options I want for error handling
-  const { error } = useSelector((state) => state.user);
+  const { error, userInfo } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,9 +34,13 @@ function Signup() {
       password: "",
       confirm_password: "",
     });
-    if (!error) {
+    if (error) {
       return null;
     } else navigate("/");
+  }
+
+  if (userInfo) {
+   return null;
   }
 
   return (
@@ -47,6 +50,7 @@ function Signup() {
         <Form.Group className="mb-3">
           <Form.Label></Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Username"
             name="username"
@@ -57,6 +61,7 @@ function Signup() {
         <Form.Group className="mb-3">
           <Form.Label></Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="First Name"
             name="first_name"
@@ -67,6 +72,7 @@ function Signup() {
         <Form.Group className="mb-3">
           <Form.Label></Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="Last Name"
             name="last_name"
@@ -77,6 +83,7 @@ function Signup() {
         <Form.Group className="mb-3">
           <Form.Label></Form.Label>
           <Form.Control
+            required
             type="password"
             placeholder="Password"
             name="password"
@@ -87,6 +94,7 @@ function Signup() {
         <Form.Group className="mb-3">
           <Form.Label></Form.Label>
           <Form.Control
+            required
             type="password"
             placeholder="Confirm Password"
             name="password_confirmation"
