@@ -41,8 +41,7 @@ function Event() {
       },
     }).then(() => {
       navigate(`/events/${events[0].id}`);
-      dispatch(eventRemoved(parseInt(eventId)));
-      dispatch(userRemovedEvent(parseInt(eventId)));
+      dispatch(eventRemoved(parseInt(eventId)), userRemovedEvent(parseInt(eventId)));
     });
   }
 
@@ -80,8 +79,7 @@ function Event() {
     }).then((response) => {
       if (response.ok) {
         response.json().then((ticket) => {
-          dispatch(ticketAdded(ticket));
-          dispatch(userAddedTicket(currentEvent));
+          dispatch(ticketAdded(ticket), userAddedTicket(currentEvent));
         });
       } else response.json().then((err) => setErrors(err.errors));
     });

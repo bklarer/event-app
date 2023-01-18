@@ -58,6 +58,9 @@ const eventsSlice = createSlice({
         existingEvent.tickets.splice(index, 1);
       }
     },
+    clearEventError: (state) => {
+      state.error = null
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,5 +93,6 @@ export const {
   eventRemoved,
   ticketAdded,
   ticketRemoved,
+  clearEventError,
 } = eventsSlice.actions;
 export default eventsSlice.reducer;

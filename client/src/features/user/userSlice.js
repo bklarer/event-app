@@ -108,6 +108,9 @@ const userSlice = createSlice({
       );
       state.userInfo.events.splice(index, 1);
     },
+    clearUserError: (state) => {
+        state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -167,5 +170,6 @@ export const {
   userUpdatedEvent,
   userAddedTicket,
   userRemovedTicket,
+  clearUserError,
 } = userSlice.actions;
 export default userSlice.reducer;

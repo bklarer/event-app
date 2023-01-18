@@ -1,7 +1,7 @@
 import NavagationBar from "./features/navigation/NavigationBar";
 import Loading from "./features/navigation/Loading";
 import { useSelector, useDispatch } from "react-redux";
-import { checkLogin } from "./features/user/userSlice";
+import { checkLogin, clearUserError } from "./features/user/userSlice";
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./features/navigation/Sidebar";
@@ -16,13 +16,27 @@ import HostedEvents from "./features/events/HostedEvents";
 import AttendingEvents from "./features/events/AttendingEvents";
 import AllEvents from "./features/events/AllEvents";
 import PageNotFound from "./features/navigation/PageNotFound";
+import { clearEventError } from "./features/events/eventsSlice";
 
 function App() {
-  const { loading, userInfo } = useSelector((state) => state.user);
+  const { loading, userInfo, error } = useSelector((state) => state.user);
+  const eventError = useSelector((state) => state.events.error)
   const eventLoading = useSelector((state) => state.events.loading);
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(checkLogin()), [dispatch]);
+
+
+  useEffect(() => {
+    if(error || eventError) {
+    const interval = setTimeout(() => {
+      dispatch(clearUserError(), clearEventError())
+    }, 5000)
+    
+    return () => clearTimeout(interval)
+    }
+  } , [dispatch, error, eventError])
+
 
   const sidebar = (
     <Col md={3}>

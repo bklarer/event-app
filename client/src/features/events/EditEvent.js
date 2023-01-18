@@ -76,8 +76,7 @@ function EditEvent() {
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((event) => {
-          dispatch(eventUpdated(event));
-          dispatch(userUpdatedEvent(event));
+          dispatch(eventUpdated(event), userUpdatedEvent(event));
           navigate(`/events/${eventId}`);
         });
       } else resp.json().then((err) => setErrors(err.errors));

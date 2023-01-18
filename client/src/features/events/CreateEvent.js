@@ -59,8 +59,7 @@ function CreateEvent() {
     }).then((resp) => {
       if (resp.ok) {
         resp.json().then((event) => {
-          dispatch(eventAdded(event));
-          dispatch(userCreatedEvent(event));
+          dispatch(eventAdded(event), dispatch(userCreatedEvent(event)));
           setNewEvent({
             title: "",
             description: "",
