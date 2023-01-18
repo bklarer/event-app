@@ -59,7 +59,7 @@ const eventsSlice = createSlice({
       }
     },
     clearEventError: (state) => {
-      state.error = null
+      state.error = null;
     },
   },
   extraReducers: (builder) => {

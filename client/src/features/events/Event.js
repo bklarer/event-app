@@ -41,7 +41,10 @@ function Event() {
       },
     }).then(() => {
       navigate(`/events/${events[0].id}`);
-      dispatch(eventRemoved(parseInt(eventId)), userRemovedEvent(parseInt(eventId)));
+      dispatch(
+        eventRemoved(parseInt(eventId)),
+        userRemovedEvent(parseInt(eventId))
+      );
     });
   }
 
@@ -55,7 +58,7 @@ function Event() {
 
   const goingButton = isGoing ? "Don't Go" : "Go";
 
-  const userTicket = currentUser 
+  const userTicket = currentUser
     ? currentEvent.tickets.find((ticket) => ticket.user_id === currentUser.id)
     : null;
 

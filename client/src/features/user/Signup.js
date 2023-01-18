@@ -40,7 +40,7 @@ function Signup() {
   }
 
   if (userInfo) {
-   return null;
+    return null;
   }
 
   return (
