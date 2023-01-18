@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :tickets
+    resources :tickets, only: [:create, :destroy]
     resources :events
     post "/signup", to: "users#create"
     get "/me", to: "users#show"
