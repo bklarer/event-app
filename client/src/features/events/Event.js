@@ -152,13 +152,13 @@ function Event() {
             People Attending:{" "}
             {currentEvent.tickets ? currentEvent.tickets.length : null}
           </h5>
-          <Button
+          {currentUser ? <Button
             variant={goingButtonStyle}
             onClick={handleGoingClick}
             style={{ margin: "10px" }}
           >
             {goingButton}
-          </Button>
+          </Button> : null}
         </>
       ) : null}
 
