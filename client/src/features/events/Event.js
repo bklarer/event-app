@@ -20,6 +20,7 @@ function Event() {
     description: "",
     date: "",
     address: "",
+    img_url: "https://media-cdn.tripadvisor.com/media/photo-s/00/18/a4/2b/watson-lake.jpg"
   };
   const events = useSelector((state) => state.events.entities);
   const currentUser = useSelector((state) => state.user.userInfo);
@@ -58,7 +59,7 @@ function Event() {
 
   const goingButton = isGoing ? "Don't Go" : "Go";
 
-  const userTicket = currentUser
+  const userTicket = currentUser && findEvent
     ? currentEvent.tickets.find((ticket) => ticket.user_id === currentUser.id)
     : null;
 
