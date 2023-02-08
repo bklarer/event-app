@@ -13,6 +13,9 @@ On the frontside, react was used for the view. I used the opportunity to learn R
 4. Users can switch views between all events, events the user is attending, or the events being hosted.
 5. Cookies and sessions are used to automatically log in the user if they haven't logged out.
 
+## Setup
+Use `sudo service postgresql start` to start postgresql
+
 # Project Template: React/Rails API
 
 ## Description
