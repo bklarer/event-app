@@ -6,14 +6,18 @@ export const fetchEvents = createAsyncThunk("events/fetchEvents", () => {
     .then((events) => events);
 });
 
+
+const initialState = {
+ entities: [],
+ status: null,
+ loading: false,
+ error: null,
+};
+
+
 const eventsSlice = createSlice({
   name: "events",
-  initialState: {
-    entities: [],
-    status: null,
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     eventAdded(state, action) {
       state.entities.push(action.payload);

@@ -49,8 +49,6 @@ function Event() {
     });
   }
 
-  //Ticket and going button
-
   const matchingTicket = currentUser
     ? currentUser.created_events.find((event) => event.id === parseInt(eventId))
     : null;
@@ -83,8 +81,9 @@ function Event() {
     }).then((response) => {
       if (response.ok) {
         response.json().then((ticket) => {
-          dispatch(ticketAdded(ticket), userAddedTicket(currentEvent));
+          dispatch(ticketAdded(ticket));
         });
+          dispatch(userAddedTicket(currentEvent));
       } else response.json().then((err) => setErrors(err.errors));
     });
   };
