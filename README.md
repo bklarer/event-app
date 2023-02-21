@@ -17,3 +17,6 @@ On the frontside, react was used for the view. I used the opportunity to learn R
 Use `sudo service postgresql start` to start postgresql
 Use `rails s` to start server on `http://localhost:3000`
 Use `npm start --prefix client` to run the front end on `http://localhost:4000`
+
+## Link to depolyed site
+`https://event-app-26zc.onrender.com/`
